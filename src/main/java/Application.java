@@ -21,7 +21,7 @@ public class Application {
 
     private void run() {
         try {
-            URL resource = getClass().getClassLoader().getResource("square.ttf");
+            URL resource = getClass().getClassLoader().getResource("SquareTest.ttf");
             File fontFile = new File(resource.toURI());
             Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -49,9 +49,9 @@ public class Application {
             screen.doResizeIfNecessary();
             screen.clear();
             screen.refresh();
-            //menu
+            new MenuController(screen, 98, 52);
             screen.stopScreen();
-        } catch (IOException | FontFormatException | URISyntaxException e) {
+        } catch (IOException | InterruptedException | FontFormatException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
