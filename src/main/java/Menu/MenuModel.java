@@ -1,5 +1,6 @@
 package Menu;
 
+import Game.GameController;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.util.Objects;
@@ -21,7 +22,7 @@ public class MenuModel {
     String[] playerColors = {"#58b06c", "#1c5888", "#a03c50", "#dbcd0f", "#db7b0f"};
 
     //game
-    //GameController game;
+    GameController game;
 
 
     //MAIN_MENU
@@ -50,7 +51,7 @@ public class MenuModel {
         mainMenuState = false;
         if (mainMenuOpt == 1 && playersNum() > 1) {
             this.state = STATE.GAME;
-            //this.game = new GameController(this.screen, this.width, this.height, this.playerOne, this.playerTwo, this.playerThree, this.playerFour);
+            this.game = new GameController(this.screen, this.width, this.height, this.playerOne, this.playerTwo, this.playerThree, this.playerFour);
         }
     }
 
