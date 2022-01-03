@@ -6,11 +6,11 @@ import com.googlecode.lanterna.screen.Screen;
 import java.util.Objects;
 
 public class MenuModel {
-    int width;
-    int height;
-    Screen screen;
+    private int width;
+    private int height;
+    private Screen screen;
 
-    enum STATE {MAIN_MENU, GAME}
+    public enum STATE {MAIN_MENU, GAME}
     private STATE state = STATE.MAIN_MENU;
 
     //players
@@ -19,10 +19,10 @@ public class MenuModel {
     private String playerThree;
     private String playerFour;
 
-    String[] playerColors = {"#58b06c", "#1c5888", "#a03c50", "#dbcd0f", "#db7b0f"};
+    private String[] playerColors = {"#58b06c", "#1c5888", "#a03c50", "#dbcd0f", "#db7b0f"};
 
     //game
-    GameController game;
+    public GameController game;
 
 
     //MAIN_MENU
