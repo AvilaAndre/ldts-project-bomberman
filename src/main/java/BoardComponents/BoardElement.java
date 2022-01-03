@@ -1,4 +1,4 @@
-package BoardElement;
+package BoardComponents;
 
 import Structures.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -10,8 +10,7 @@ public abstract class BoardElement {
     Board board = null;
 
 
-    BoardElement(String color_, Position pos_, Board gameBoard_) {
-        this.color = color_;
+    BoardElement(Position pos_, Board gameBoard_) {
         this.position = pos_;
         this.board = gameBoard_;
     }
