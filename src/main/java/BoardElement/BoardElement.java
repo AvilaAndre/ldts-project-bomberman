@@ -1,5 +1,6 @@
 package BoardElement;
 
+import Structures.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class BoardElement {
