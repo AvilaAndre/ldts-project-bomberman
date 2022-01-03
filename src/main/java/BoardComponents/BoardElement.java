@@ -1,11 +1,15 @@
 package BoardComponents;
 
+import Structures.ColliderBox;
 import Structures.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.util.ArrayList;
+
 public abstract class BoardElement {
+    /*
     DrawingImage image = null;
-    ArrayAsList<ColliderBox> = new ArrayAsList<>();
+    ArrayList<ColliderBox> collider = new ArrayList<>();
     Position position;
     Board board = null;
 
@@ -18,5 +22,5 @@ public abstract class BoardElement {
     public void draw(TextGraphics graphics_) {
         image.draw(graphics_);
     }
-
+    */
 }
