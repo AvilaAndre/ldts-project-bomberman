@@ -46,7 +46,7 @@ public class MenuController {
                 break;
             }
             case GAME: {
-                //model.game.draw(graphics);
+                model.game.draw(graphics);
                 break;
             }
         }
@@ -56,7 +56,7 @@ public class MenuController {
 
     private boolean getInput() throws IOException {
         if (model.getState() == MenuModel.STATE.GAME) {
-            //model.game.getInput();
+            model.game.getInput();
             return true;
         }
         KeyStroke key = screen.pollInput();
