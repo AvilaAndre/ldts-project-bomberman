@@ -28,7 +28,7 @@ public class MenuModel {
     private int mainMenuOpt = 0;
     private boolean mainMenuState = false;
 
-    MenuModel(Screen screen_, int width_, int height_) {
+    public MenuModel(Screen screen_, int width_, int height_) {
         this.screen = screen_;
         this.width = width_;
         this.height = height_;
