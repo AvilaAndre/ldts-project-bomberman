@@ -23,7 +23,7 @@ public class Board {
             for(int j = 0; j < 18; j++) {
                 switch (code.charAt(i*18 + j)) {
                     case '0':
-                        dImage = new DrawingImage(new Position(0,0), new DrawingBlock[]{
+                        dImage = new DrawingImage(new DrawingBlock[]{
                                 new DrawingBlock(new Position(0,0), 3, 3, "#300000", "#000000", ' ')
                         });
                         blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{
@@ -32,7 +32,7 @@ public class Board {
                         u++;
                         break;
                     case '1':
-                        dImage = new DrawingImage(new Position(0,0), new DrawingBlock[]{
+                        dImage = new DrawingImage(new DrawingBlock[]{
                                 new DrawingBlock(new Position(0,0), 3, 3, "#ffffff", "#000000", '#')
                         });
                         blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{

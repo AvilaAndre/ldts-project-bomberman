@@ -6,18 +6,16 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.Arrays;
 
 public class DrawingImage {
-    Position pos = null;
-    DrawingBlock[] blocks = null;
+    DrawingBlock[] blocks;
 
 
-    public DrawingImage(Position pos_, DrawingBlock[] blocks_) {
-        this.pos = pos_;
+    public DrawingImage(DrawingBlock[] blocks_) {
         this.blocks = blocks_;
     }
 
-    public void draw(TextGraphics graphics_) {
+    public void draw(TextGraphics graphics_, Position imagePos_) {
         for (DrawingBlock block : blocks)
-            block.draw(graphics_, pos);
+            block.draw(graphics_, imagePos_);
     }
 
     public DrawingBlock[] getDrawingBlocks() {

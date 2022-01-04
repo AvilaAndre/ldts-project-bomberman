@@ -20,7 +20,7 @@ public abstract class BoardElement {
     }
 
     public void draw(TextGraphics graphics_) {
-        image.draw(graphics_);
+        image.draw(graphics_, this.position);
     }
 
     public DrawingImage getImage() {
@@ -33,5 +33,9 @@ public abstract class BoardElement {
 
     public Position getPosition() {
         return position;
+    }
+
+    public boolean action() {
+        return false;
     }
 }

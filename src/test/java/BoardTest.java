@@ -29,7 +29,7 @@ public class BoardTest {
                         "0  111000000111  0" +
                         "000000000000000000");
 
-        DrawingImage dImage = new DrawingImage(new Position(0,0), new DrawingBlock[]{
+        DrawingImage dImage = new DrawingImage(new DrawingBlock[]{
                 new DrawingBlock(new Position(0,0), 3, 3, "#ffffff", "#000000", '#')
         });
         Block testBlock = new Block(new Position(3, 1), testBoard, dImage, new ColliderBox[]{
