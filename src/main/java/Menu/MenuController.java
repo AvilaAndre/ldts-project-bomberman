@@ -22,7 +22,7 @@ public class MenuController {
     private MenuModel model;
     private MenuView view;
     private int deltaTime = 0;
-    private int framesPerSecond = 0;
+    private int framesPerSecond = 15;
 
     public MenuController(Screen screen_, int width_, int height_) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         this.screen = screen_;
@@ -129,29 +129,17 @@ public class MenuController {
 
 
     private void run() throws IOException, InterruptedException {
-        long lastTime = System.nanoTime();
-        int frames = 0;
-        int viewTime = 0;
-        int viewSeconds = 0;
+        long timePerFrame = 1000/framesPerSecond;
+        long startTime = 0;
+        long endTime = 0;
         do {
-            long time = System.nanoTime();
-            deltaTime = (int) ((time - lastTime) / 1000000);
-            lastTime = time;
-            viewTime += deltaTime;
-            viewSeconds += deltaTime;
-            //Output
-            if (viewTime > 66) {
-                viewTime = 0;
-                frames++;
-                updateView();
-            }
-            if (viewSeconds > 1000) {
-                framesPerSecond = frames;
-                viewSeconds = 0;
-                frames = 0;
-            }
-            //Right now, the program runs SUPER fast soo this while would loop infinitely if this sleep didn't exist.
-            sleep(1);
+            startTime = System.currentTimeMillis();
+            updateView();
+            endTime = System.currentTimeMillis();
+            System.out.println(endTime-startTime);
+            System.out.println(timePerFrame);
+            if (endTime-startTime < timePerFrame)
+                Thread.sleep(timePerFrame - (endTime - startTime));
             //Input
         } while (getInput());
     }
