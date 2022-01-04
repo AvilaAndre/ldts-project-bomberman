@@ -9,9 +9,12 @@ public class DrawingImage {
     ArrayList<DrawingBlock> blocks = null;
 
 
-    DrawingImage(Position pos_, int width_, int height_, String backColor_, String frontColor_, char character_){}
+    DrawingImage(Position pos_, ArrayList<DrawingBlock> blocks_) {
+        this.pos = pos_;
+        this.blocks = blocks_;
+    }
 
-    void draw(TextGraphics graphics_) {
+    public void draw(TextGraphics graphics_) {
         for (DrawingBlock block : blocks)
             block.draw(graphics_, pos);
     }
