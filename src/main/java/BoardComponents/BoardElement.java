@@ -20,7 +20,7 @@ public abstract class BoardElement {
     }
 
     public void draw(TextGraphics graphics_) {
-        image.draw(graphics_, this.position);
+        image.draw(graphics_, this.position, true);
     }
 
     public DrawingImage getImage() {

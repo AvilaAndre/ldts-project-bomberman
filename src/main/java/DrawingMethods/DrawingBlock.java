@@ -25,12 +25,15 @@ public class DrawingBlock {
         this.character = character_;
     }
 
-    public void draw(TextGraphics graphics_, Position offset){
+    public void draw(TextGraphics graphics_, Position offset, boolean boardOffset_){
+        Position boardOffset = new Position(0,0);
+        if (boardOffset_)
+            boardOffset = new Position(22, 2);
 
         if(backColor !=null) graphics_.setBackgroundColor(TextColor.Factory.fromString(this.backColor));
 
-        if(frontColor !=null) graphics_.setBackgroundColor(TextColor.Factory.fromString(this.frontColor));
-        graphics_.fillRectangle( new TerminalPosition(this.pos.getX() +offset.getX(),this.pos.getY()+offset.getY()), new TerminalSize(width, height), this.character);
+        if(frontColor !=null) graphics_.setForegroundColor(TextColor.Factory.fromString(this.frontColor));
+        graphics_.fillRectangle( new TerminalPosition(this.pos.getX() +offset.getX()*3 + boardOffset.getX(),this.pos.getY()+offset.getY()*3 + boardOffset.getY()), new TerminalSize(width, height), this.character);
     }
 
     public char getCharacter() {

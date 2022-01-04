@@ -10,7 +10,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.ArrayList;
 
 public class Board {
-    TextGraphics graphics = null;
+    private TextGraphics graphics = null;
     private ArrayList<BoardElement> blocks = new ArrayList<>();
     //private ArrayList<Bomb> bombs = new ArrayList<>();
     private ArrayList<BoardElement> powerups = new ArrayList<>();

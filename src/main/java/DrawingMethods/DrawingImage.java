@@ -13,9 +13,9 @@ public class DrawingImage {
         this.blocks = blocks_;
     }
 
-    public void draw(TextGraphics graphics_, Position imagePos_) {
+    public void draw(TextGraphics graphics_, Position imagePos_, boolean boardOffset_) {
         for (DrawingBlock block : blocks)
-            block.draw(graphics_, imagePos_);
+            block.draw(graphics_, imagePos_, boardOffset_);
     }
 
     public DrawingBlock[] getDrawingBlocks() {
