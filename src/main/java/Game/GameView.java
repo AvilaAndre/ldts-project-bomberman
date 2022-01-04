@@ -36,9 +36,13 @@ public class GameView {
 
         for (BoardElement element : drawQueue)
             element.draw(graphics_);
-        playerOne_.draw(graphics_);
-        playerTwo_.draw(graphics_);
-        playerThree_.draw(graphics_);
-        playerFour_.draw(graphics_);
+        if (playerOne_.isAlive())
+            playerOne_.draw(graphics_);
+        if (playerTwo_.isAlive())
+            playerTwo_.draw(graphics_);
+        if (playerThree_.isAlive())
+            playerThree_.draw(graphics_);
+        if (playerFour_.isAlive())
+            playerFour_.draw(graphics_);
     }
 }
