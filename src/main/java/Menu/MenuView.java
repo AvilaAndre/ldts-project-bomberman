@@ -7,25 +7,24 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class MenuView {
-    int width;
-    int height;
-    MenuModel model;
+    private int width;
+    private int height;
+    private MenuModel model;
+    private String menuBackgroundColor = "#c8c8c8";
+    private String bombColor = "#2e2e2e";
+    private String bombWickColor = "#909090";
+    private String fireRedColor = "#ff2706";
+    private String fireYellowColor = "#ffee00";
+    private String lettersColor = "#1c5888";
+    private int mainMenuBomb = 0;
+    private int bombRow = 9;
+    private int optionSize = 12;
 
     MenuView(int width_, int height_, MenuModel model_){
         this.width = width_;
         this.height = height_;
         this.model = model_;
     }
-
-    String menuBackgroundColor = "#c8c8c8";
-    String bombColor = "#2e2e2e";
-    String bombWickColor = "#909090";
-    String fireRedColor = "#ff2706";
-    String fireYellowColor = "#ffee00";
-    String lettersColor = "#1c5888";
-    int mainMenuBomb = 0;
-    int bombRow = 9;
-    int optionSize = 12;
 
     private void drawPlayerInMenu(TextGraphics graphics_, String player_, int playerNum){
         if (player_ != null) {

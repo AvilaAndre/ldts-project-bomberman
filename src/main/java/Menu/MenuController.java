@@ -17,12 +17,12 @@ import static java.lang.Thread.sleep;
 
 public class MenuController {
 
-    Screen screen;
-    TextGraphics graphics;
-    MenuModel model;
-    MenuView view;
-    int deltaTime = 0;
-    int framesPerSecond = 0;
+    private Screen screen;
+    private TextGraphics graphics;
+    private MenuModel model;
+    private MenuView view;
+    private int deltaTime = 0;
+    private int framesPerSecond = 0;
 
     public MenuController(Screen screen_, int width_, int height_) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         this.screen = screen_;
