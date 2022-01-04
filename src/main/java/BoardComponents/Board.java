@@ -44,6 +44,12 @@ public class Board {
             }
     }
 
+    public void loop() {
+        drawQueue.clear();
+        //bombs.removeIf(bomb -> bomb.action() && bomb.getExploded());
+        drawQueue.addAll(blocks);
+    }
+
     public ArrayList<BoardElement> getBoard() {
         return this.blocks;
     }

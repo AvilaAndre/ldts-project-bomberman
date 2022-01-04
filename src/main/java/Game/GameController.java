@@ -1,5 +1,6 @@
 package Game;
 
+import BoardComponents.BoardElement;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
@@ -99,6 +100,7 @@ public class GameController {
     }
 
     public void draw(TextGraphics graphics) {
-        //view.draw(graphics, model.playerOne, model.playerTwo, model.playerThree, model.playerFour);
+        model.gameBoard.loop();
+        view.draw(graphics, model.gameBoard.getDrawQueue(), model.playerOne, model.playerTwo, model.playerThree, model.playerFour);
     }
 }

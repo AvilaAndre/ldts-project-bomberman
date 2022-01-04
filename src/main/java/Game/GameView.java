@@ -1,7 +1,12 @@
 package Game;
 
-public class GameView {
+import BoardComponents.BoardElement;
+import BoardElements.Bomberman;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.util.ArrayList;
+
+public class GameView {
     int width;
     int height;
 
@@ -10,5 +15,8 @@ public class GameView {
         this.height = height_;
     }
 
-    //public draw(TextGraphics grapichs_)
+    public void draw(TextGraphics graphics_, ArrayList<BoardElement> drawQueue, Bomberman playerOne_, Bomberman playerTwo_, Bomberman playerThree_, Bomberman playerFour_) {
+        for (BoardElement element : drawQueue)
+            element.draw(graphics_);
+    }
 }
