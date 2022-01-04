@@ -1,5 +1,9 @@
 package BoardComponents;
 
+import BoardElements.Block;
+import DrawingMethods.DrawingBlock;
+import DrawingMethods.DrawingImage;
+import Structures.ColliderBox;
 import Structures.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
@@ -14,16 +18,26 @@ public class Board {
 
     public Board(String code) {
         int u = 0;
+        DrawingImage dImage;
         for(int i = 0; i < 16; i++)
             for(int j = 0; j < 18; j++) {
                 switch (code.charAt(i*18 + j)) {
                     case '0':
-                        //TODO: Create blocks
-                        //blocks.add(new Block("#300000", new Position(j, i), false, this));
+                        dImage = new DrawingImage(new Position(0,0), new DrawingBlock[]{
+                                new DrawingBlock(new Position(0,0), 3, 3, "#300000", "#000000", ' ')
+                        });
+                        blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{
+                                new ColliderBox(new Position(0, 0), 3, 3)
+                        }, false));
                         u++;
                         break;
                     case '1':
-                        //blocks.add(new Block("#ffffff", new Position(j, i), true, this));
+                        dImage = new DrawingImage(new Position(0,0), new DrawingBlock[]{
+                                new DrawingBlock(new Position(0,0), 3, 3, "#ffffff", "#000000", '#')
+                        });
+                        blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{
+                                new ColliderBox(new Position(0, 0), 3, 3)
+                        }, true));
                         u++;
                         break;
                 }
