@@ -19,9 +19,16 @@ public class DrawingBlock {
 
     char character;
 
-    DrawingBlock(Position pos_, int width_, int height_, String backColor_, String frontColor_, char character_){}
+    DrawingBlock(Position pos_, int width_, int height_, String backColor_, String frontColor_, char character_) {
+        this.pos = pos_;
+        this.width = width_;
+        this.height = height_;
+        this.backColor = backColor_;
+        this.frontColor = frontColor_;
+        this.character = character_;
+    }
 
-    void draw(TextGraphics graphics_, Position offset){
+    public void draw(TextGraphics graphics_, Position offset){
 
         if(backColor !=null) graphics_.setBackgroundColor(TextColor.Factory.fromString(this.backColor));
 
