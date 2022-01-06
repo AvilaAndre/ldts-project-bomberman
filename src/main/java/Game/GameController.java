@@ -99,6 +99,7 @@ public class GameController {
     }
 
     public void draw(TextGraphics graphics) {
-        //view.draw(graphics, model.playerOne, model.playerTwo, model.playerThree, model.playerFour);
+        model.gameBoard.loop();
+        view.draw(graphics, model.gameBoard.getDrawQueue(), model.playerOne, model.playerTwo, model.playerThree, model.playerFour);
     }
 }

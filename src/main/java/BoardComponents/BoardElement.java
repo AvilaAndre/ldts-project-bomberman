@@ -5,21 +5,37 @@ import Structures.ColliderBox;
 import Structures.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.util.ArrayList;
-
 public abstract class BoardElement {
-    DrawingImage image = null;
-    ArrayList<ColliderBox> collider = new ArrayList<>();
-    Position position;
-    Board board = null;
+    private final DrawingImage image;
+    private final ColliderBox[] collider;
+    private final Position position;
+    private final Board board;
 
 
-    BoardElement(Position pos_, Board gameBoard_) {
+    public BoardElement(Position pos_, Board gameBoard_, DrawingImage image_, ColliderBox[] collider_) {
         this.position = pos_;
         this.board = gameBoard_;
+        this.image = image_;
+        this.collider = collider_;
     }
 
     public void draw(TextGraphics graphics_) {
-        image.draw(graphics_);
+        image.draw(graphics_, this.position, true);
+    }
+
+    public DrawingImage getImage() {
+        return image;
+    }
+
+    public ColliderBox[] getCollider() {
+        return collider;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public boolean action() {
+        return false;
     }
 }
