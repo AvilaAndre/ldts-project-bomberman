@@ -1,6 +1,5 @@
 package Game;
 
-import BoardComponents.BoardElement;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;

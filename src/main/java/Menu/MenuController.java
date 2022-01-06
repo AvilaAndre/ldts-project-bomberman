@@ -136,8 +136,6 @@ public class MenuController {
             startTime = System.currentTimeMillis();
             updateView();
             endTime = System.currentTimeMillis();
-            System.out.println(endTime-startTime);
-            System.out.println(timePerFrame);
             if (endTime-startTime < timePerFrame)
                 Thread.sleep(timePerFrame - (endTime - startTime));
             //Input

@@ -5,7 +5,6 @@ import BoardElements.Bomberman;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
 import Structures.Position;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
