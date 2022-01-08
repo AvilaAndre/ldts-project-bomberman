@@ -2,8 +2,6 @@
 
 ## Game Description
 
-## Game Description
-
 **Remember Bomberman:**
 Bomberman is a strategic, maze-based computer and video game franchise.
 Players are put in a maze where they have to destroy soft blocks and uncovering items/power ups.
