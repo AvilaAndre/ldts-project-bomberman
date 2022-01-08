@@ -1,11 +1,15 @@
-# LDTS_T06_G01 - OVERKILL
+# LDTS_T09_G03 - BOMBERMAN
 
 ## Game Description
 
-The OVERKILL is a rogue-like shooter based game where you have to murder different waves of enemies, obtaining coins with each kill and having the chance to level up your power with the help of new guns.
-The variety of levels will have increased difficulty with different bullet speeds and strategic enemies.
+## Game Description
 
-This project was developed by Donal Knuth (knuth@edu.fe.up.pt), Timothy J. Berners-Lee (timothy@edu.fe.up.pt) and Vinton G. Cerf (vinton@edu.fe.up.pt) for LDTS 2021-22.
+**Remember Bomberman:**
+Bomberman is a strategic, maze-based computer and video game franchise.
+Players are put in a maze where they have to destroy soft blocks and uncovering items/power ups.
+Play this multiplayer game with your friends and show us who is the best by blowing up your competition.
+This project was developed by Afonso Abreu (up202008552@edu.fe.up.pt), André Ávila (up202006767@edu.fe.up.pt) and João Malva (up202006605@edu.fe.up.pt) for LDTS 2021/2022.
+Have fun exploding bombs in your friends' faces, but be careful not to get killed in the process.
 
 For a more detailed version of this description click [here](./docs/README.md).
 
