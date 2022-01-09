@@ -19,7 +19,7 @@ Have fun exploding bombs in your friends' faces, but be careful not to get kille
 **4 player movement** - all players must move correctly depending on the keys assigned to their movement.
 **Power ups** -  Powers and upgrades like increase explosion range, increase maximum number of bombs, lives, shields, push bombs, in order to spicy the game.
 **Gameplay** - Coordinate the movements of the characters in the maze and the game events (death, lives, power ups...).
-**Som e Música** - Sons nas diferentes interações e música durante o decorer do jogo.
+**Sound and Music** - Sounds in different interactions and music during game decorer.
 
 
 ## DESIGN
