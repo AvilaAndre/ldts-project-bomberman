@@ -1,21 +1,28 @@
-## LDTS_0903 - "Bomberman"
+# LDTS_T09_G03 - BOMBERMAN
 
+## Game Description
 
-**Remember Bomberman**
+**Remember Bomberman:**
+Bomberman is a strategic, maze-based computer and video game franchise.
+Players are put in a maze where they have to destroy soft blocks and uncovering power ups.
 Play this multiplayer game with your friends and show us who is the best by blowing up your competition.
-
 This project was developed by Afonso Abreu (up202008552@edu.fe.up.pt), André Ávila (up202006767@edu.fe.up.pt) and João Malva (up202006605@edu.fe.up.pt) for LDTS 2021/2022.
-Have fun exploding bombs in your friends' faces, but be careful not to get killed in the process. XD
+Have fun exploding bombs in your friends' faces, but be careful not to get killed in the process.
 
-### IMPLEMENTED FEATURES
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
-
-
-### IMPLEMENTED FEATURES
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+## IMPLEMENTED FEATURES
+**Home Menu** -  In this menu you can select the player's number and check the commands that he will use in the gameplay.
+**Character Color Choice** - While the game does not start, it is possible for players to change their character's color by pressing the lateral movement keys (left and right) assigned to them.
 
 
-### DESIGN
+## Planned Features
+**Secondary Menus** - menus that allow manipulation of sound/music and among other game settings.
+**4 player movement** - all players must move correctly depending on the keys assigned to their movement.
+**Power ups** -  Powers and upgrades like increase explosion range, increase maximum number of bombs, lives, shields, push bombs, in order to spicy the game.
+**Gameplay** - Coordinate the movements of the characters in the maze and the game events (death, lives, power ups...).
+**Som e Música** - Sons nas diferentes interações e música durante o decorer do jogo.
+
+
+## DESIGN
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
 #### Problem
 >*problem description*d
