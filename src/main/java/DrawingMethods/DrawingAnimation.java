@@ -31,8 +31,6 @@ public class DrawingAnimation {
     }
 
     public void draw(TextGraphics graphics_, Position pos_, boolean boardOffset_) {
-        System.out.println(paused);
-        System.out.println(currentFrameTick);
         if (frameDuration[size] == currentFrameTick && frameIndex == size && pauseOnEnding)
             paused = true;
         if (!paused)
