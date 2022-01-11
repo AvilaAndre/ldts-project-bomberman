@@ -22,7 +22,7 @@ public class Application {
 
     private void run() {
         try {
-            URL resource = getClass().getClassLoader().getResource("SquareTest.ttf");
+            URL resource = getClass().getClassLoader().getResource("GameFont.ttf");
             File fontFile = new File(resource.toURI());
             Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -31,7 +31,7 @@ public class Application {
 
             DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, 15);
+            Font loadedFont = font.deriveFont(Font.PLAIN, 12);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             factory.setTerminalEmulatorFontConfiguration(fontConfig);
             factory.setForceAWTOverSwing(true);
