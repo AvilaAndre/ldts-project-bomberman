@@ -23,10 +23,10 @@ public class ColliderBox {
         return height;
     }
 
-    public boolean collides(ColliderBox collider2) {
-        return (position.getX() < collider2.getPosition().getX() + collider2.getWidth() &&
-                position.getX() + width > collider2.getPosition().getX() &&
-                position.getY() < collider2.getPosition().getY() + collider2.getHeight() &&
-                position.getY() + height > collider2.getPosition().getY());
+    public boolean collides(Position parentPosition, ColliderBox collider2, Position colliderPosition) {
+        return (parentPosition.getX() + position.getX() < colliderPosition.getX() + collider2.getPosition().getX() + collider2.getWidth() &&
+                parentPosition.getX() + position.getX() + width > colliderPosition.getX() + collider2.getPosition().getX() &&
+                parentPosition.getY() + position.getY() < colliderPosition.getY() + collider2.getPosition().getY() + collider2.getHeight() &&
+                parentPosition.getY() + position.getY() + height > colliderPosition.getY() + collider2.getPosition().getY());
     }
 }
