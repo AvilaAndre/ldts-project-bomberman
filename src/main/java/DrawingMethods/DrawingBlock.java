@@ -30,10 +30,16 @@ public class DrawingBlock {
         if (boardOffset_)
             boardOffset = new Position(22, 2);
 
+        TextColor lastBackColor = graphics_.getBackgroundColor();
+        TextColor lastFrontColor = graphics_.getForegroundColor();
+
         if(backColor !=null) graphics_.setBackgroundColor(TextColor.Factory.fromString(this.backColor));
 
         if(frontColor !=null) graphics_.setForegroundColor(TextColor.Factory.fromString(this.frontColor));
         graphics_.fillRectangle( new TerminalPosition(this.pos.getX() +offset.getX()*3 + boardOffset.getX(),this.pos.getY()+offset.getY()*3 + boardOffset.getY()), new TerminalSize(width, height), this.character);
+
+        graphics_.setBackgroundColor(lastBackColor);
+        graphics_.setForegroundColor(lastFrontColor);
     }
 
     public char getCharacter() {
