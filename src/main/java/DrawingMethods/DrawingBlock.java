@@ -8,7 +8,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 
 
-public class DrawingBlock {
+public class DrawingBlock extends DrawingMethod{
     private final Position pos;
     private final int width;
     private final int height;

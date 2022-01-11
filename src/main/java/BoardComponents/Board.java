@@ -5,12 +5,14 @@ import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
 import Structures.ColliderBox;
 import Structures.Position;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
 
 public class Board {
-    private TextGraphics graphics = null;
+    TextColor backColor = TextColor.Factory.fromString("#999999");
+    private final TextGraphics graphics = null;
     private ArrayList<BoardElement> blocks = new ArrayList<>();
     //private ArrayList<Bomb> bombs = new ArrayList<>();
     private ArrayList<BoardElement> powerups = new ArrayList<>();
@@ -24,7 +26,15 @@ public class Board {
                 switch (code.charAt(i*18 + j)) {
                     case '0':
                         dImage = new DrawingImage(new DrawingBlock[]{
-                                new DrawingBlock(new Position(0,0), 3, 3, "#300000", "#000000", ' ')
+                                new DrawingBlock(new Position(0,0), 1, 1, "#900000", "#000000", 's'),
+                                new DrawingBlock(new Position(1,0), 1, 1, "#900000", "#000000", 'x'),
+                                new DrawingBlock(new Position(2,0), 1, 1, "#900000", "#000000", 't'),
+                                new DrawingBlock(new Position(0,1), 1, 1, "#900000", "#000000", 'w'),
+                                new DrawingBlock(new Position(1,1), 1, 1, "#900000", "#000000", '+'),
+                                new DrawingBlock(new Position(2,1), 1, 1, "#900000", "#000000", 'y'),
+                                new DrawingBlock(new Position(0,2), 1, 1, "#900000", "#000000", 'r'),
+                                new DrawingBlock(new Position(1,2), 1, 1, "#900000", "#000000", 'z'),
+                                new DrawingBlock(new Position(2,2), 1, 1, "#900000", "#000000", 'u')
                         });
                         blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{
                                 new ColliderBox(new Position(0, 0), 3, 3)
@@ -33,7 +43,15 @@ public class Board {
                         break;
                     case '1':
                         dImage = new DrawingImage(new DrawingBlock[]{
-                                new DrawingBlock(new Position(0,0), 3, 3, "#ffffff", "#000000", '#')
+                                new DrawingBlock(new Position(0,0), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(1,0), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(2,0), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(0,1), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(1,1), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(2,1), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(0,2), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(1,2), 1, 1, "#ffffff", "#000000", ' '),
+                                new DrawingBlock(new Position(2,2), 1, 1, "#ffffff", "#000000", ' ')
                         });
                         blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{
                                 new ColliderBox(new Position(0, 0), 3, 3)
@@ -56,5 +74,9 @@ public class Board {
 
     public ArrayList<BoardElement> getDrawQueue() {
         return drawQueue;
+    }
+
+    public TextColor getBackColor() {
+        return this.backColor;
     }
 }

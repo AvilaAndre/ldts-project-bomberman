@@ -19,6 +19,7 @@ public class GameView {
             new DrawingBlock(new Position(21, 1), 56, 1, "#000000", null, ' '),
             new DrawingBlock(new Position(21, 50), 56, 1, "#000000", null, ' ')
     });
+    //TODO: Connect with Board.backColor
     DrawingImage boardBackground = new DrawingImage(new DrawingBlock[] {
             new DrawingBlock(new Position(22, 2), 54, 48, "#999999", null, ' ')
     });

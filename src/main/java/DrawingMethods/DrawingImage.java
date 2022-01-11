@@ -5,7 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.Arrays;
 
-public class DrawingImage {
+public class DrawingImage extends DrawingMethod{
     DrawingBlock[] blocks;
 
 

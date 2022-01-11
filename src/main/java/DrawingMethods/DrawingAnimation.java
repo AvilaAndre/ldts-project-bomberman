@@ -3,7 +3,7 @@ package DrawingMethods;
 import Structures.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class DrawingAnimation {
+public class DrawingAnimation extends DrawingMethod{
     private int frameIndex = 0;
     private int currentFrameTick = 0;
     private DrawingImage[] frames = null;
