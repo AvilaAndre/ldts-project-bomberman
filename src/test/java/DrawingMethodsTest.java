@@ -1,5 +1,6 @@
+import DrawingMethods.DrawingAnimation;
 import DrawingMethods.DrawingBlock;
-import Structures.ColliderBox;
+import DrawingMethods.DrawingImage;
 import Structures.Position;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -19,29 +20,74 @@ public class DrawingMethodsTest {
     public void BlockTest() throws IOException {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
         factory.setInitialTerminalSize(new TerminalSize(98, 52));
-
         Terminal terminal = factory.createTerminal();
         Screen screen = new TerminalScreen(terminal);
         TextGraphics graphics = screen.newTextGraphics();
+
         DrawingBlock testBlock1 = new DrawingBlock(new Position(0,0), 1, 1, "#FF0000", "#0000FF", '+');
-        DrawingBlock testBlock2 = new DrawingBlock(new Position(0,0), 1, 1, "#000000", null, '+');
+        DrawingBlock testBlock2 = new DrawingBlock(new Position(0,0), 3, 2, "#000000", "#FF0000", '+');
 
         testBlock1.draw(graphics, new Position(0,0), false);
-        assertEquals(TextColor.Factory.fromString("#FF0000"),graphics.getBackgroundColor());
-        assertNotEquals(TextColor.Factory.fromString("#000000"),graphics.getForegroundColor());
+        assertEquals(TextColor.Factory.fromString("#FF0000"), screen.getBackCharacter(0,0).getBackgroundColor());
+        assertNotEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(0,0).getForegroundColor());
 
         testBlock2.draw(graphics, new Position(0,0), false);
-
-        assertNotEquals(TextColor.Factory.fromString("#FF0000"),graphics.getBackgroundColor());
-        assertEquals(TextColor.Factory.fromString("#0000FF"),graphics.getForegroundColor());
-        //This second test shows that when draw() is called on a block the TextGraphics color changes to the block's color, however, if the color is null, it does not change
-        //so the color will be the same as the color currently on the TextGraphics.
+        assertNotEquals(TextColor.Factory.fromString("#FF0000"), screen.getBackCharacter(0,0).getBackgroundColor());
+        assertEquals(TextColor.Factory.fromString("#FF0000"), screen.getBackCharacter(2,1).getForegroundColor());
     }
+
     @Test
-    public void AnimationTest() {
+    public void AnimationTest() throws IOException {
+        DefaultTerminalFactory factory = new DefaultTerminalFactory();
+        factory.setInitialTerminalSize(new TerminalSize(98, 52));
+        Terminal terminal = factory.createTerminal();
+        Screen screen = new TerminalScreen(terminal);
+        TextGraphics graphics = screen.newTextGraphics();
 
+        DrawingImage testImage1 = new DrawingImage(new DrawingBlock[]{
+                new DrawingBlock(new Position(0, 0), 1, 1, "#000000", null, '+'),
+                new DrawingBlock(new Position(0, 0), 1, 1, "#000000", null, '+'),
+                new DrawingBlock(new Position(0, 0), 1, 1, "#000000", null, '+')
+        });
+        DrawingImage testImage2 = new DrawingImage(new DrawingBlock[]{
+                new DrawingBlock(new Position(0, 0), 1, 1, "#110000", null, ' '),
+                new DrawingBlock(new Position(0, 0), 1, 1, "#110000", null, ' '),
+        });
+        DrawingImage testImage3 = new DrawingImage(new DrawingBlock[]{
+                new DrawingBlock(new Position(0, 0), 1, 1, "#001100", null, 'u'),
+        });
+        DrawingImage testImage4 = new DrawingImage(new DrawingBlock[]{
+                new DrawingBlock(new Position(0, 0), 1, 1, "#11FF00", null, 'o'),
+        });
 
+        DrawingAnimation testAnimation1 = new DrawingAnimation(new DrawingImage[] {testImage1, testImage2, testImage3, testImage4, testImage2}, new int[]{1, 2, 1, 4, 1}, false);
 
-        assertTrue(true);
+        testAnimation1.draw(graphics, new Position(0,0), false);
+        assertEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(0,0).getBackgroundColor());
+        testAnimation1.draw(graphics, new Position(0,0), false);
+        assertEquals(TextColor.Factory.fromString("#110000"), screen.getBackCharacter(0,0).getBackgroundColor());
+        testAnimation1.draw(graphics, new Position(0,0), false);
+        assertNotEquals(TextColor.Factory.fromString("#001100"), screen.getBackCharacter(0,0).getBackgroundColor());
+
+        for (int i = 0; i < 7; i++) {
+            testAnimation1.draw(graphics, new Position(0, 0), false);
+        }
+        //Checking if it restarts after looping
+        assertEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(0,0).getBackgroundColor());
+        testAnimation1.restart();
+        testAnimation1.setPaused(true);
+        testAnimation1.draw(graphics, new Position(0, 0), false);
+        testAnimation1.draw(graphics, new Position(0, 0), false);
+        assertEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(0,0).getBackgroundColor());
+        testAnimation1.setPaused(false);
+        testAnimation1.draw(graphics, new Position(0, 0), false);
+        assertEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(0,0).getBackgroundColor());
+        testAnimation1.draw(graphics, new Position(0, 0), false);
+        testAnimation1.draw(graphics, new Position(0, 0), false);
+        testAnimation1.draw(graphics, new Position(0, 0), false);
+        assertEquals(TextColor.Factory.fromString("#001100"), screen.getBackCharacter(0,0).getBackgroundColor());
+        testAnimation1.restart();
+        testAnimation1.draw(graphics, new Position(0, 0), false);
+        assertEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(0,0).getBackgroundColor());
     }
 }
