@@ -97,24 +97,29 @@ public class MenuController {
                             model.playerJoin(4);
                             break;
                         case 'a':
+                        case 'A':
                             model.playerPreviousColor(2);
                             break;
                         case 'f':
+                        case 'F':
                             model.playerPreviousColor(3);
                             break;
                         case 'j':
+                        case 'J':
                             model.playerPreviousColor(4);
                             break;
                         case 'd':
+                        case 'D':
                             model.playerNextColor(2);
                             break;
                         case 'h':
+                        case 'H':
                             model.playerNextColor(3);
                             break;
                         case 'l':
+                        case 'L':
                             model.playerNextColor(4);
                             break;
-
                     }
                     break;
                 }
