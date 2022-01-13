@@ -40,24 +40,24 @@ public class GameModel {
         boolean canMove = true;
         switch (player_) {
             case 1:
-                //Check if it can move
-                //if (canMove)
-//                    playerOne.moveUp();
+                canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX(), playerOne.getPosition().getY() - 1), playerOne.getCollider());
+                if (canMove)
+                    playerOne.moveUp();
                 break;
             case 2:
-                //Check if it can move
-                //if (canMove)
-//                    playerTwo.moveUp();
+                canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX(), playerTwo.getPosition().getY() - 1), playerTwo.getCollider());
+                if (canMove)
+                    playerTwo.moveUp();
                 break;
             case 3:
-                //Check if it can move
-                //if (canMove)
-//                    playerThree.moveUp();
+                canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX(), playerThree.getPosition().getY() - 1), playerThree.getCollider());
+                if (canMove)
+                    playerThree.moveUp();
                 break;
             case 4:
-                //Check if it can move
-                //if (canMove)
-//                    playerFour.moveUp();
+                canMove = gameBoard.checkCollision(new Position(playerFour.getPosition().getX(), playerFour.getPosition().getY() - 1), playerFour.getCollider());
+                if (canMove)
+                    playerFour.moveUp();
                 break;
             default:
                 break;
@@ -68,24 +68,24 @@ public class GameModel {
         boolean canMove = true;
         switch (player_) {
             case 1:
-                //Check if it can move
-                //if (canMove)
-//                    playerOne.moveDown();
+                canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX(), playerOne.getPosition().getY() + 1), playerOne.getCollider());
+                if (canMove)
+                    playerOne.moveDown();
                 break;
             case 2:
-                //Check if it can move
-                //if (canMove)
-//                    playerTwo.moveDown();
+                canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX(), playerTwo.getPosition().getY() + 1), playerTwo.getCollider());
+                if (canMove)
+                    playerTwo.moveDown();
                 break;
             case 3:
-                //Check if it can move
-                //if (canMove)
-//                    playerThree.moveDown();
+                canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX(), playerThree.getPosition().getY() + 1), playerThree.getCollider());
+                if (canMove)
+                    playerThree.moveDown();
                 break;
             case 4:
-                //Check if it can move
-                //if (canMove)
-//                    playerFour.moveDown();
+                canMove = gameBoard.checkCollision(new Position(playerFour.getPosition().getX(), playerFour.getPosition().getY() + 1), playerFour.getCollider());
+                if (canMove)
+                    playerFour.moveDown();
                 break;
             default:
                 break;
@@ -96,24 +96,24 @@ public class GameModel {
         boolean canMove = true;
         switch (player_) {
             case 1:
-                //Check if it can move
-                //if (canMove)
-//                    playerOne.moveLeft();
+                canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX() - 1, playerOne.getPosition().getY()), playerOne.getCollider());
+                if (canMove)
+                    playerOne.moveLeft();
                 break;
             case 2:
-                //Check if it can move
-                //if (canMove)
-//                    playerTwo.moveLeft();
+                canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX() - 1, playerTwo.getPosition().getY()), playerTwo.getCollider());
+                if (canMove)
+                    playerTwo.moveLeft();
                 break;
             case 3:
-                //Check if it can move
-                //if (canMove)
-//                    playerThree.moveLeft();
+                canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX() - 1, playerThree.getPosition().getY()), playerThree.getCollider());
+                if (canMove)
+                    playerThree.moveLeft();
                 break;
             case 4:
-                //Check if it can move
-                //if (canMove)
-//                    playerFour.moveLeft();
+                canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX() - 1, playerFour.getPosition().getY()), playerFour.getCollider());
+                if (canMove)
+                    playerFour.moveLeft();
                 break;
             default:
                 break;
@@ -124,24 +124,24 @@ public class GameModel {
         boolean canMove = true;
         switch (player_) {
             case 1:
-                //Check if it can move
-                //if (canMove)
-//                    playerOne.moveRight();
+                canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX() + 1, playerOne.getPosition().getY()), playerOne.getCollider());
+                if (canMove)
+                    playerOne.moveRight();
                 break;
             case 2:
-                //Check if it can move
-                //if (canMove)
-//                    playerTwo.moveRight();
+                canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX() + 1, playerTwo.getPosition().getY()), playerTwo.getCollider());
+                if (canMove)
+                    playerTwo.moveRight();
                 break;
             case 3:
-                //Check if it can move
-                //if (canMove)
-//                    playerThree.moveRight();
+                canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX() + 1, playerThree.getPosition().getY()), playerThree.getCollider());
+                if (canMove)
+                    playerThree.moveRight();
                 break;
             case 4:
-                //Check if it can move
-                //if (canMove)
-//                    playerFour.moveRight();
+                canMove = gameBoard.checkCollision(new Position(playerFour.getPosition().getX() + 1, playerFour.getPosition().getY()), playerFour.getCollider());
+                if (canMove)
+                    playerFour.moveRight();
                 break;
             default:
                 break;

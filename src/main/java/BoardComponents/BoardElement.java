@@ -1,6 +1,5 @@
 package BoardComponents;
 
-import DrawingMethods.DrawingImage;
 import DrawingMethods.DrawingMethod;
 import Structures.ColliderBox;
 import Structures.Position;
@@ -8,7 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class BoardElement {
     private final ColliderBox[] collider;
-    private final Position position;
+    private Position position;
     private final Board board;
 
 
@@ -35,7 +34,21 @@ public abstract class BoardElement {
         return position;
     }
 
+    public void setPosition(Position newPos) {
+        this.position = newPos;
+    }
+
+    public Board getBoard() { return board; }
+
     public boolean action() {
         return false;
     }
+
+    public void moveUp() {}
+
+    public void moveDown() {}
+
+    public void moveLeft() {}
+
+    public void moveRight() {}
 }
