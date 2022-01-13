@@ -28,7 +28,7 @@ public class Bomberman extends BoardElement {
 
 
     public Bomberman(String name_, String color_, Position pos_, Board gameBoard_) {
-        super(pos_, gameBoard_, new ColliderBox[]{ new ColliderBox(new Position(0,0), 3, 3) });
+        super(pos_, gameBoard_, new ColliderBox[]{ new ColliderBox(new Position(0,0), 1, 1) });
         this.name = name_;
         if (color_ != null)
             this.lives = 1;
@@ -118,4 +118,5 @@ public class Bomberman extends BoardElement {
     public boolean isAlive() {
         return lives > 0;
     }
+
 }
