@@ -13,8 +13,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static java.lang.Thread.sleep;
-
 public class MenuController {
 
     private Screen screen;

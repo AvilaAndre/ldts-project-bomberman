@@ -68,7 +68,6 @@ public class DrawingBlock extends DrawingMethod{
         if (o == null) return false;
         if (getClass() != o.getClass()) return false;
         DrawingBlock p = (DrawingBlock) o;
-        System.out.println(this.backColor.equals(p.getBackColor()) && this.frontColor.equals(p.getFrontColor()) && this.character == p.getCharacter() && this.width == p.getWidth() && this.height == p.getHeight());
         return this.backColor.equals(p.getBackColor()) && this.frontColor.equals(p.getFrontColor()) && this.character == p.getCharacter() && this.width == p.getWidth() && this.height == p.getHeight();
     }
 }
