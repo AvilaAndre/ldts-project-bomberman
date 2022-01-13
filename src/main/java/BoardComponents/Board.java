@@ -91,4 +91,8 @@ public class Board {
         }
         return true;
     }
+
+    public void removeBlock(Block block) {
+        blocks.removeIf(blo -> blo == block);
+    }
 }

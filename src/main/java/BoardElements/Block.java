@@ -21,8 +21,10 @@ public class Block extends BoardElement {
     }
 
     public void destroy() {
-        if (!destroyed && destructible)
+        if (!destroyed && destructible) {
             destroyed = true;
+            getBoard().removeBlock(this);
+        }
     }
 
     public boolean getDestroyed() {
