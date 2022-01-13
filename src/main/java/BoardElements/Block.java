@@ -41,7 +41,7 @@ public class Block extends BoardElement {
         if (o == null) return false;
         if (getClass() != o.getClass()) return false;
         Block p = (Block) o;
-        return this.getVisual().equals(p.getVisual()) && destructible == p.getDestructible();
+        return this.getVisual().equals(p.getVisual()) && destructible == p.getDestructible() && this.getPosition() == p.getPosition();
     }
 
     @Override

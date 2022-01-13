@@ -50,7 +50,7 @@ public class BoardTest {
                 });
         Block testBlock = new Block(new Position(3, 1), testBoard, dImage, new ColliderBox[]{
                 new ColliderBox(new Position(0, 0), 1, 1)}, true);
-        assertEquals(testBlock, testBoard.getBoard().get(19));
+        assertEquals(testBlock.getVisual(), testBoard.getBoard().get(19).getVisual());
     }
 
     @Test
