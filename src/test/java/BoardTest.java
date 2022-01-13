@@ -62,5 +62,20 @@ public class BoardTest {
         assertEquals(new Position(1, 2), playerOne.getPosition());
     }
 
+    @Test
+    public void BlockDestroyTest() {
+        //Test if a destructible block is destroyed.
+        Block testBlock1 = (Block) testBoard.getBoard().get(19);
+        testBlock1.destroy();
+        assertTrue(testBlock1.getDestroyed());
+        assertNotEquals(testBlock1, (Block) testBoard.getBoard().get(19));
+
+        //Test if an indestructible block is destroyed.
+        Block testBlock2 = (Block) testBoard.getBoard().get(10);
+        testBlock2.destroy();
+        assertFalse(testBlock2.getDestroyed());
+        assertEquals(testBlock2, (Block) testBoard.getBoard().get(10));
+    }
+
 }
 
