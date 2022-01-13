@@ -81,6 +81,14 @@ public class Board {
     }
 
     public boolean checkCollision(Position pos, ColliderBox[] collider) {
-        return false;
+        for (BoardElement block : blocks) {
+            for (ColliderBox col1 : collider)
+                for (ColliderBox col2 : block.getCollider()) {
+                    if (col1.collides(pos, col2, block.getPosition())) {
+                        return false;
+                    }
+                }
+        }
+        return true;
     }
 }

@@ -44,11 +44,19 @@ public abstract class BoardElement {
         return false;
     }
 
-    public void moveUp() {}
+    public void moveUp() {
+        setPosition(new Position(getPosition().getX(), getPosition().getY() - 1));
+    }
 
-    public void moveDown() {}
+    public void moveDown() {
+        setPosition(new Position(getPosition().getX(), getPosition().getY() + 1));
+    }
 
-    public void moveLeft() {}
+    public void moveLeft() {
+        setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
+    }
 
-    public void moveRight() {}
+    public void moveRight() {
+        setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
+    }
 }
