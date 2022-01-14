@@ -87,6 +87,10 @@ public class Bomberman extends BoardElement {
         return this.bombRadius;
     }
 
+    public void setBombRadius(int newBombRadius_) {
+        this.bombRadius = newBombRadius_;
+    }
+
     @Override
     public DrawingMethod getVisual() {
         switch (state) {

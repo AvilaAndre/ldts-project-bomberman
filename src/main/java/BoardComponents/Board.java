@@ -1,6 +1,7 @@
 package BoardComponents;
 
 import BoardElements.Block;
+import BoardElements.Bomb;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
 import Structures.ColliderBox;
@@ -14,7 +15,7 @@ public class Board {
     TextColor backColor = TextColor.Factory.fromString("#999999");
     private final TextGraphics graphics = null;
     private ArrayList<BoardElement> blocks = new ArrayList<>();
-    //private ArrayList<Bomb> bombs = new ArrayList<>();
+    private ArrayList<Bomb> bombs = new ArrayList<>();
     private ArrayList<BoardElement> powerups = new ArrayList<>();
     private ArrayList<BoardElement> drawQueue = new ArrayList<>();
 
@@ -94,5 +95,9 @@ public class Board {
 
     public void removeBlock(Block block) {
         blocks.removeIf(blo -> blo == block);
+    }
+
+    public ArrayList<Bomb> getBombs() {
+        return this.bombs;
     }
 }
