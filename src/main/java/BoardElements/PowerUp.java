@@ -6,13 +6,18 @@ import DrawingMethods.DrawingMethod;
 import Structures.ColliderBox;
 import Structures.Position;
 
-public class PowerUp extends BoardElement {
-    public PowerUp(Position pos_, Board gameBoard_, ColliderBox[] collider_) {
-        super(pos_, gameBoard_, collider_);
+public abstract class PowerUp extends BoardElement {
+    public PowerUp(Position pos_, Board gameBoard_) {
+        super(pos_, gameBoard_, new ColliderBox[] { new ColliderBox(new Position(0,0), 1, 1)});
     }
 
     @Override
     public DrawingMethod getVisual() {
         return null;
     }
+
+    public abstract void affect(Bomberman player_);
+
+    public abstract String getType();
+
 }

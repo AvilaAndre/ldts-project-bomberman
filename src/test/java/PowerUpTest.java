@@ -215,7 +215,7 @@ public class PowerUpTest {
         PowerUp invincibilityPowerUp = factory.getPowerUp(new Position(0, 0), testBoard, 5);
 
         assertFalse(player.getInvincible());
-        newPowerUp.affect(player);
+        invincibilityPowerUp.affect(player);
         assertTrue(player.getInvincible());
 
         //Invincibility is a power up that expires.
