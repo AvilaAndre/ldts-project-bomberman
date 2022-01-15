@@ -4,6 +4,7 @@ import BoardElements.Block;
 import BoardElements.Bomberman;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
+import Game.GameModel;
 import Structures.ColliderBox;
 import Structures.Position;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ public class BoardTest {
                         "010000000000000010" +
                         "0 01110000001110 0" +
                         "0  111000000111  0" +
-                        "000000000000000000");
+                        "000000000000000000", new GameModel(null, null, null, null));
     }
 
     @Test
