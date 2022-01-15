@@ -76,8 +76,7 @@ public class PowerUpTest {
         assertEquals( 2, testBoard.getBombs().size());
         ArrayList<Bomb> bombs = testBoard.getBombs();
         int ticks = bombs.get(1).getTicksLeft();
-        int bombTicksToExplode = ticks + 1;
-        for (int i = 0; i < bombTicksToExplode; i++) {
+        for (int i = 0; i < ticks; i++) {
             testBoard.loop();
         }
         assertTrue(bombs.get(0).getExploded());
@@ -98,7 +97,7 @@ public class PowerUpTest {
         //Checks if the bomb created by the player is set up correctly;
         ArrayList<Bomb> bombs = testBoard.getBombs();
         assertEquals(1, bombs.size());
-        assertEquals(3, bombs.get(0).getRadius());
+        assertEquals(2, bombs.get(0).getRadius());
 
         //Check if the bomb explodes correctly
         Bomb testBomb = bombs.get(0);
@@ -210,13 +209,13 @@ public class PowerUpTest {
     }
 
     @Test
-    public void invincibleEffect() {
+    public void InvincibilityEffect() {
         Bomberman player = testModel.getPlayerOne();
         PowerUp invincibilityPowerUp = factory.getPowerUp(new Position(0, 0), testBoard, 5);
 
-        assertFalse(player.getInvincible());
+        assertFalse(player.getInvincibility());
         invincibilityPowerUp.affect(player);
-        assertTrue(player.getInvincible());
+        assertTrue(player.getInvincibility());
 
         //Invincibility is a power up that expires.
         int ticks = player.getInvincibilityTicksLeft() + 1;
@@ -229,7 +228,7 @@ public class PowerUpTest {
         //Shields are not destroyed by bombs when the player is invincible.
         PowerUp shield = factory.getPowerUp(new Position(0, 0), testBoard, 3);
         assertFalse(player.getShield());
-        shield.effect(player);
+        shield.affect(player);
         assertTrue(player.getShield());
 
         ArrayList<Bomb> bombs = testBoard.getBombs();
