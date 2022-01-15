@@ -36,6 +36,8 @@ public class GameView {
 
         for (BoardElement element : drawQueue)
             element.draw(graphics_);
+
+        //TODO: Alternate order to be able to see everyone when on top of each other.
         if (playerOne_.isAlive())
             playerOne_.draw(graphics_);
         if (playerTwo_.isAlive())
