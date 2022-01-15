@@ -90,28 +90,5 @@ public class BombTest {
         assertNotEquals(testBlock1, testBoard.getBoard().get(19));
     }
 
-    /* This code will only be tested when Power Ups are created.
-    @Test
-    public void ExplosionPowerUpTest() {
-        Bomberman playerOne = new Bomberman("PLAYER ONE", "#0000FF", new Position(1,1), testBoard);
-        playerOne.setBombRadius(3);
-
-        playerOne.setBombLimit(3);
-
-        playerOne.action();
-        playerOne.action();
-        playerOne.action();
-
-        //Checks if the bomb created by the player damages it on explosion.
-        ArrayList<Bomb> bombs = testBoard.getBombs();
-        assertEquals(3, bombs.size());
-        Bomb testBomb = bombs.get(0);
-        for (int i = 0; i < testBomb.getTicksLeft(); i++) {
-            testBoard.loop();
-        }
-        assertEquals(0, testBoard.getBombs().size());
-    }
-     */
-
 }
 
