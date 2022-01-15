@@ -2,8 +2,10 @@ package BoardComponents;
 
 import BoardElements.Block;
 import BoardElements.Bomb;
+import BoardElements.Bomberman;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
+import Game.GameModel;
 import Structures.ColliderBox;
 import Structures.Position;
 import com.googlecode.lanterna.TextColor;
@@ -12,6 +14,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.ArrayList;
 
 public class Board {
+    GameModel model;
     TextColor backColor = TextColor.Factory.fromString("#999999");
     private final TextGraphics graphics = null;
     private ArrayList<BoardElement> blocks = new ArrayList<>();
@@ -19,7 +22,8 @@ public class Board {
     private ArrayList<BoardElement> powerups = new ArrayList<>();
     private ArrayList<BoardElement> drawQueue = new ArrayList<>();
 
-    public Board(String code) {
+    public Board(String code, GameModel model_) {
+        model = model_;
         int u = 0;
         DrawingImage dImage;
         for (int i = 0; i < 16; i++)
@@ -65,8 +69,13 @@ public class Board {
 
     public void loop() {
         drawQueue.clear();
-        //bombs.removeIf(bomb -> bomb.action() && bomb.getExploded());
+        bombs.removeIf(bomb -> bomb.action() && bomb.getExploded());
+        for (Bomberman player : model.getPlayers())
+            if (player != null)
+                if (!checkExplodedBombCollision(player.getPosition(), player.getCollider()))
+                    player.getHurt();
         drawQueue.addAll(blocks);
+        drawQueue.addAll(bombs);
     }
 
     public ArrayList<BoardElement> getBoard() {
@@ -82,14 +91,48 @@ public class Board {
     }
 
     public boolean checkCollision(Position pos, ColliderBox[] collider) {
-        for (BoardElement block : blocks) {
+        return checkBlockCollision(pos, collider) && checkBombCollision(pos, collider);
+    }
+
+    public boolean checkBlockCollision(Position pos, ColliderBox[] collider) {
+        for (BoardElement elem : blocks) {
             for (ColliderBox col1 : collider)
-                for (ColliderBox col2 : block.getCollider()) {
-                    if (col1.collides(pos, col2, block.getPosition())) {
+                for (ColliderBox col2 : elem.getCollider()) {
+                    if (col1.collides(pos, col2, elem.getPosition())) {
                         return false;
                     }
                 }
         }
+        return true;
+    }
+
+    public BoardElement getBlockCollision(Position pos, ColliderBox[] collider) {
+        for (BoardElement elem : blocks) {
+            for (ColliderBox col1 : collider)
+                for (ColliderBox col2 : elem.getCollider()) {
+                    if (col1.collides(pos, col2, elem.getPosition())) {
+                        return elem;
+                    }
+                }
+        }
+        return null;
+    }
+
+    public boolean checkBombCollision(Position pos, ColliderBox[] collider) {
+        for (Bomb elem : bombs)
+            for (ColliderBox col1 : collider)
+                for (ColliderBox col2 : elem.getCollider())
+                    if (col1.collides(pos, col2, elem.getPosition()) && !elem.getExploded())
+                        return false;
+        return true;
+    }
+
+    public boolean checkExplodedBombCollision(Position pos, ColliderBox[] collider) {
+        for (Bomb elem : bombs)
+            for (ColliderBox col1 : collider)
+                for (ColliderBox col2 : elem.getCollider())
+                    if (col1.collides(pos, col2, elem.getPosition()) && elem.getExploded())
+                        return false;
         return true;
     }
 
@@ -99,5 +142,64 @@ public class Board {
 
     public ArrayList<Bomb> getBombs() {
         return this.bombs;
+    }
+
+    public void addBomb(Position position_, int bombRadius_, Bomberman owner_) {
+        bombs.add(new Bomb(position_, this, bombRadius_, owner_));
+    }
+
+    public int[] bombExplosion(int radius, Position expPosition) {
+        int leftExp = 0;
+        int upExp = 0;
+        int rightExp = 0;
+        int downExp = 0;
+        for (int i = 1; i <= radius; i++) {
+            Block blockThatCollides = (Block) getBlockCollision(expPosition, new ColliderBox[] { new ColliderBox(new Position(-i, 0), 1, 1)});
+            if (blockThatCollides != null) {
+                if (blockThatCollides.getDestructible())
+                    leftExp++;
+                blockThatCollides.destroy();
+                break;
+            }
+            leftExp++;
+        }
+        for (int i = 1; i <= radius; i++) {
+            Block blockThatCollides = (Block) getBlockCollision(expPosition, new ColliderBox[] { new ColliderBox(new Position(0, -i), 1, 1)});
+            if (blockThatCollides != null) {
+                if (blockThatCollides.getDestructible())
+                    upExp++;
+                blockThatCollides.destroy();
+                break;
+            }
+            upExp++;
+        }
+        for (int i = 1; i <= radius; i++) {
+            Block blockThatCollides = (Block) getBlockCollision(expPosition, new ColliderBox[] { new ColliderBox(new Position(i, 0), 1, 1)});
+            if (blockThatCollides != null) {
+                if (blockThatCollides.getDestructible())
+                    rightExp++;
+                blockThatCollides.destroy();
+                break;
+            }
+            rightExp++;
+        }
+        for (int i = 1; i <= radius; i++) {
+            Block blockThatCollides = (Block) getBlockCollision(expPosition, new ColliderBox[] { new ColliderBox(new Position(0, i), 1, 1)});
+            if (blockThatCollides != null) {
+                if (blockThatCollides.getDestructible())
+                    downExp++;
+                blockThatCollides.destroy();
+                break;
+            }
+            downExp++;
+        }
+        return new int[] {leftExp, upExp, rightExp, downExp};
+    }
+
+    private Block getBlockAtPosition(Position position) {
+        for (BoardElement block : blocks)
+            if (block.getPosition() == position)
+                return (Block) block;
+        return null;
     }
 }

@@ -29,7 +29,8 @@ public class GameModel {
                         "010000000000000010" +
                         "0 01110000001110 0" +
                         "0  111000000111  0" +
-                        "000000000000000000");
+                        "000000000000000000",
+                this);
         this.playerOne = new Bomberman("PLAYER ONE", playerOne_, new Position(1,1), gameBoard);
         this.playerTwo = new Bomberman("PLAYER TWO", playerTwo_, new Position(16,1), gameBoard);
         this.playerThree = new Bomberman("PLAYER THREE", playerThree_, new Position(1,14), gameBoard);
@@ -151,25 +152,40 @@ public class GameModel {
     public void playerAction(int player_) {
         switch (player_) {
             case 1:
-                /*
-                TODO: The code below
-                if (playerOne.action()) {
-                    //createBomb(playerOne.getPosition(), playerOne.getBombRadius());
-                }
-                */
+                playerOne.action();
                 break;
             case 2:
-                //TODO:
+                playerTwo.action();
                 break;
             case 3:
-                //TODO:
+                playerThree.action();
                 break;
             case 4:
-                //TODO:
+                playerFour.action();
                 break;
             default:
                 break;
         }
     }
 
+    public Bomberman getPlayerOne() {
+        return this.playerOne;
+    }
+    public Bomberman getPlayerTwo() {
+        return this.playerTwo;
+    }
+    public Bomberman getPlayerThree() {
+        return this.playerThree;
+    }
+    public Bomberman getPlayerFour() {
+        return this.playerFour;
+    }
+
+    public Bomberman[] getPlayers() {
+        return new Bomberman[]{playerOne, playerTwo, playerThree, playerFour};
+    }
+
+    public Board getGameBoard() {
+        return this.gameBoard;
+    }
 }

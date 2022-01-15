@@ -6,7 +6,7 @@ import Structures.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class BoardElement {
-    private final ColliderBox[] collider;
+    private ColliderBox[] collider;
     private Position position;
     private final Board board;
 
@@ -28,6 +28,10 @@ public abstract class BoardElement {
 
     public ColliderBox[] getCollider() {
         return collider;
+    }
+
+    public void setCollider(ColliderBox[] collider_) {
+        this.collider = collider_;
     }
 
     public Position getPosition() {
