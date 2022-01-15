@@ -13,7 +13,7 @@ public class ExtraBomb extends PowerUp {
 
     @Override
     public void affect(Bomberman player_) {
-
+        player_.setBombLimit(player_.getBombLimit() + 1);
     }
 
     @Override

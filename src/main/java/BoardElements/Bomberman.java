@@ -15,6 +15,9 @@ public class Bomberman extends BoardElement {
     int activeBombs = 0;
     int bombRadius = 1;
     boolean invincibility = false;
+    int invincibilityTicks;
+    boolean shield = false;
+    boolean pushTheBomb = false;
 
     DrawingMethod moveUpVisual = null;
     DrawingMethod moveDownVisual = null;
@@ -77,18 +80,6 @@ public class Bomberman extends BoardElement {
         });
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getBombRadius() {
-        return this.bombRadius;
-    }
-
-    public void setBombRadius(int newBombRadius_) {
-        this.bombRadius = newBombRadius_;
-    }
-
     @Override
     public DrawingMethod getVisual() {
         switch (state) {
@@ -139,14 +130,47 @@ public class Bomberman extends BoardElement {
     @Override
     public boolean action() {
         if (bombLimit > activeBombs) {
-            getBoard().addBomb(this.getPosition(), bombRadius, this);
+            if (getBoard().addBomb(this.getPosition(), bombRadius, this))
+                activeBombs++;
             return true;
         }
         return false;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getBombRadius() {
+        return this.bombRadius;
+    }
+
+    public void setBombRadius(int newBombRadius_) {
+        this.bombRadius = newBombRadius_;
+    }
+
+    public int getBombLimit() {
+        return this.bombLimit;
+    }
+
+    public void setBombLimit(int limit_) {
+        this.bombLimit = limit_;
+    }
+
+    public int getLives() {
+        return this.lives;
+    }
+
+    public void setLives(int lives_) {
+        this.lives = lives_;
+    }
+
     public boolean isAlive() {
         return lives > 0;
+    }
+
+    public int getActiveBombs() {
+        return this.activeBombs;
     }
 
     public void setActiveBombs(int activeBombs) {
@@ -160,5 +184,38 @@ public class Bomberman extends BoardElement {
     public void getHurt() {
         lives -= 1;
         invincibility = true;
+        invincibilityTicks = 10;
+    }
+
+    public boolean getShield() {
+        return this.shield;
+    }
+
+    public void setShield(boolean shield_) {
+        this.shield = shield_;
+    }
+
+    public boolean getPushTheBomb() {
+        return this.pushTheBomb;
+    }
+
+    public void setPushTheBomb(boolean push_) {
+        this.pushTheBomb = push_;
+    }
+
+    public boolean getInvincibility() {
+        return this.invincibility;
+    }
+
+    public void setInvincibility(boolean invincibility_) {
+        this.invincibility = invincibility_;
+    }
+
+    public int getInvincibilityTicksLeft() {
+        return this.invincibilityTicks;
+    }
+
+    public void setInvincibilityTicksLeft(int invincibilityTicks_) {
+        this.invincibilityTicks = invincibilityTicks_;
     }
 }

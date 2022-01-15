@@ -12,7 +12,7 @@ public class PushTheBomb extends PowerUp {
 
     @Override
     public void affect(Bomberman player_) {
-
+        player_.setPushTheBomb(true);
     }
 
     @Override
