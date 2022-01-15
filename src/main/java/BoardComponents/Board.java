@@ -144,8 +144,12 @@ public class Board {
         return this.bombs;
     }
 
-    public void addBomb(Position position_, int bombRadius_, Bomberman owner_) {
+    public boolean addBomb(Position position_, int bombRadius_, Bomberman owner_) {
+        for (Bomb bob : bombs)
+            if (bob.getPosition() == position_)
+                return false;
         bombs.add(new Bomb(position_, this, bombRadius_, owner_));
+        return true;
     }
 
     public int[] bombExplosion(int radius, Position expPosition) {

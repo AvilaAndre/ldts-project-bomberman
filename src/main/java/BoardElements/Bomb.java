@@ -10,14 +10,17 @@ import Structures.ColliderBox;
 import Structures.Position;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Bomb extends BoardElement {
     int ticksLeft = 30;
     private final int radius;
     private boolean exploded = false;
-    private Bomberman owner;
+    private final Bomberman owner;
+    enum DIRECTION {UP, DOWN, LEFT, RIGHT};
+    DIRECTION moveDirection;
+    int moveTicks = 3;
+    int moveTicksLeft = moveTicks;
 
     private DrawingAnimation explosionAnim = new DrawingAnimation(new DrawingImage[]{
             new DrawingImage(new DrawingBlock[]{
@@ -67,7 +70,12 @@ public class Bomb extends BoardElement {
                 explode();
         }
         else
-            return ticksLeft < 0;
+            if (ticksLeft < 0){
+                owner.setActiveBombs(owner.getActiveBombs() -1);
+                return true;
+            }
+            else
+                return false;
         return false;
     }
 
@@ -122,5 +130,9 @@ public class Bomb extends BoardElement {
 
     public int getTicksLeft() {
         return this.ticksLeft;
+    }
+
+    public int getMoveTicksLeft() {
+        return this.moveTicksLeft;
     }
 }
