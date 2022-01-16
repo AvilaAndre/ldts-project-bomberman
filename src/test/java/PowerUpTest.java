@@ -170,10 +170,10 @@ public class PowerUpTest {
         PowerUp pushTheBombPowerUp = factory.getPowerUp(new Position(0, 0), testBoard, 4);
         player.setPosition(new Position(8,8));
 
-        player.action();
+        testModel.playerAction(1);
         assertEquals(new Position(8,8), testBoard.getBombs().get(0).getPosition());
-        player.moveLeft();
-        player.moveRight();
+        testModel.playerLeft(1);
+        testModel.playerRight(1);
         //Player doesn't move as there is a bomb there.
         assertEquals(new Position(7,8), player.getPosition());
         for (int i = 0; i < testBoard.getBombs().get(0).getMoveTicksLeft(); i++) {
@@ -186,13 +186,14 @@ public class PowerUpTest {
         pushTheBombPowerUp.affect(player);
         assertTrue(player.getPushTheBomb());
 
-        player.moveRight();
+        testModel.playerRight(1);
         //Again, player doesn't move as there is a bomb there.
         assertEquals(new Position(7,8), player.getPosition());
-        for (int i = 0; i < testBoard.getBombs().get(0).getMoveTicksLeft(); i++) {
+        int ticks = testBoard.getBombs().get(0).getMoveTicksLeft()+1;
+        for (int i = 0; i < ticks; i++) {
             testBoard.loop();
         }
-        //Pushing (moving towards) the bomb won't move it.
+        //Pushing (moving towards) the bomb will move it.
         assertNotEquals(new Position(8,8), testBoard.getBombs().get(0).getPosition());
 
         //Pushing the bomb in this scenario will make the player
@@ -231,6 +232,8 @@ public class PowerUpTest {
         shield.affect(player);
         assertTrue(player.getShield());
 
+        testModel.playerAction(1);
+
         ArrayList<Bomb> bombs = testBoard.getBombs();
         assertEquals(1, bombs.size());
         Bomb testBomb = bombs.get(0);
@@ -245,7 +248,5 @@ public class PowerUpTest {
         assertEquals(1, player.getLives());
         assertTrue(player.getInvincibility());
         assertTrue(player.getShield());
-
-
     }
 }

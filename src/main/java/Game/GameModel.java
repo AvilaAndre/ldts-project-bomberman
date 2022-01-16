@@ -1,6 +1,7 @@
 package Game;
 
 import BoardComponents.Board;
+import BoardElements.Bomb;
 import BoardElements.Bomberman;
 import Structures.Position;
 
@@ -44,21 +45,41 @@ public class GameModel {
                 canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX(), playerOne.getPosition().getY() - 1), playerOne.getCollider());
                 if (canMove)
                     playerOne.moveUp();
+                if (playerOne.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerOne.getPosition().getX(), playerOne.getPosition().getY() - 1), playerOne.getCollider());
+                    if (bob != null)
+                        bob.setMoving("up");
+                }
                 break;
             case 2:
                 canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX(), playerTwo.getPosition().getY() - 1), playerTwo.getCollider());
                 if (canMove)
                     playerTwo.moveUp();
+                if (playerTwo.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerTwo.getPosition().getX(), playerTwo.getPosition().getY() - 1), playerTwo.getCollider());
+                    if (bob != null)
+                        bob.setMoving("up");
+                }
                 break;
             case 3:
                 canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX(), playerThree.getPosition().getY() - 1), playerThree.getCollider());
                 if (canMove)
                     playerThree.moveUp();
+                if (playerThree.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerThree.getPosition().getX(), playerThree.getPosition().getY() - 1), playerThree.getCollider());
+                    if (bob != null)
+                        bob.setMoving("up");
+                }
                 break;
             case 4:
                 canMove = gameBoard.checkCollision(new Position(playerFour.getPosition().getX(), playerFour.getPosition().getY() - 1), playerFour.getCollider());
                 if (canMove)
                     playerFour.moveUp();
+                if (playerFour.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerFour.getPosition().getX(), playerFour.getPosition().getY() - 1), playerFour.getCollider());
+                    if (bob != null)
+                        bob.setMoving("up");
+                }
                 break;
             default:
                 break;
@@ -72,21 +93,41 @@ public class GameModel {
                 canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX(), playerOne.getPosition().getY() + 1), playerOne.getCollider());
                 if (canMove)
                     playerOne.moveDown();
+                if (playerOne.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerOne.getPosition().getX(), playerOne.getPosition().getY() + 1), playerOne.getCollider());
+                    if (bob != null)
+                        bob.setMoving("down");
+                }
                 break;
             case 2:
                 canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX(), playerTwo.getPosition().getY() + 1), playerTwo.getCollider());
                 if (canMove)
                     playerTwo.moveDown();
+                if (playerTwo.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerTwo.getPosition().getX(), playerTwo.getPosition().getY() + 1), playerTwo.getCollider());
+                    if (bob != null)
+                        bob.setMoving("down");
+                }
                 break;
             case 3:
                 canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX(), playerThree.getPosition().getY() + 1), playerThree.getCollider());
                 if (canMove)
                     playerThree.moveDown();
+                if (playerThree.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerThree.getPosition().getX(), playerThree.getPosition().getY() + 1), playerThree.getCollider());
+                    if (bob != null)
+                        bob.setMoving("down");
+                }
                 break;
             case 4:
                 canMove = gameBoard.checkCollision(new Position(playerFour.getPosition().getX(), playerFour.getPosition().getY() + 1), playerFour.getCollider());
                 if (canMove)
                     playerFour.moveDown();
+                if (playerFour.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerFour.getPosition().getX(), playerFour.getPosition().getY() + 1), playerFour.getCollider());
+                    if (bob != null)
+                        bob.setMoving("down");
+                }
                 break;
             default:
                 break;
@@ -100,21 +141,41 @@ public class GameModel {
                 canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX() - 1, playerOne.getPosition().getY()), playerOne.getCollider());
                 if (canMove)
                     playerOne.moveLeft();
+                if (playerOne.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerOne.getPosition().getX() - 1, playerOne.getPosition().getY()), playerOne.getCollider());
+                    if (bob != null)
+                        bob.setMoving("left");
+                }
                 break;
             case 2:
                 canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX() - 1, playerTwo.getPosition().getY()), playerTwo.getCollider());
                 if (canMove)
                     playerTwo.moveLeft();
+                if (playerTwo.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerTwo.getPosition().getX() - 1, playerTwo.getPosition().getY()), playerTwo.getCollider());
+                    if (bob != null)
+                        bob.setMoving("left");
+                }
                 break;
             case 3:
                 canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX() - 1, playerThree.getPosition().getY()), playerThree.getCollider());
                 if (canMove)
                     playerThree.moveLeft();
+                if (playerThree.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerThree.getPosition().getX() - 1, playerThree.getPosition().getY()), playerThree.getCollider());
+                    if (bob != null)
+                        bob.setMoving("left");
+                }
                 break;
             case 4:
                 canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX() - 1, playerFour.getPosition().getY()), playerFour.getCollider());
                 if (canMove)
                     playerFour.moveLeft();
+                if (playerFour.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerFour.getPosition().getX() - 1, playerFour.getPosition().getY()), playerFour.getCollider());
+                    if (bob != null)
+                        bob.setMoving("left");
+                }
                 break;
             default:
                 break;
@@ -128,21 +189,41 @@ public class GameModel {
                 canMove = gameBoard.checkCollision(new Position(playerOne.getPosition().getX() + 1, playerOne.getPosition().getY()), playerOne.getCollider());
                 if (canMove)
                     playerOne.moveRight();
+                if (playerOne.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerOne.getPosition().getX() + 1, playerOne.getPosition().getY()), playerOne.getCollider());
+                    if (bob != null)
+                        bob.setMoving("right");
+                }
                 break;
             case 2:
                 canMove = gameBoard.checkCollision(new Position(playerTwo.getPosition().getX() + 1, playerTwo.getPosition().getY()), playerTwo.getCollider());
                 if (canMove)
                     playerTwo.moveRight();
+                if (playerTwo.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerTwo.getPosition().getX() + 1, playerTwo.getPosition().getY()), playerTwo.getCollider());
+                    if (bob != null)
+                        bob.setMoving("right");
+                }
                 break;
             case 3:
                 canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX() + 1, playerThree.getPosition().getY()), playerThree.getCollider());
                 if (canMove)
                     playerThree.moveRight();
+                if (playerThree.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerThree.getPosition().getX() + 1, playerThree.getPosition().getY()), playerThree.getCollider());
+                    if (bob != null)
+                        bob.setMoving("right");
+                }
                 break;
             case 4:
                 canMove = gameBoard.checkCollision(new Position(playerFour.getPosition().getX() + 1, playerFour.getPosition().getY()), playerFour.getCollider());
                 if (canMove)
                     playerFour.moveRight();
+                if (playerFour.getPushTheBomb()) {
+                    Bomb bob = gameBoard.getBombCollision(new Position(playerFour.getPosition().getX() + 1, playerFour.getPosition().getY()), playerFour.getCollider());
+                    if (bob != null)
+                        bob.setMoving("right");
+                }
                 break;
             default:
                 break;

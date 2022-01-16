@@ -70,10 +70,13 @@ public class Board {
     public void loop() {
         drawQueue.clear();
         bombs.removeIf(bomb -> bomb.action() && bomb.getExploded());
-        for (Bomberman player : model.getPlayers())
-            if (player != null)
+        for (Bomberman player : model.getPlayers()) {
+            if (player != null) {
+                player.loop();
                 if (!checkExplodedBombCollision(player.getPosition(), player.getCollider()))
                     player.getHurt();
+            }
+        }
         drawQueue.addAll(blocks);
         drawQueue.addAll(bombs);
     }
@@ -125,6 +128,15 @@ public class Board {
                     if (col1.collides(pos, col2, elem.getPosition()) && !elem.getExploded())
                         return false;
         return true;
+    }
+
+    public Bomb getBombCollision(Position pos, ColliderBox[] collider) {
+        for (Bomb elem : bombs)
+            for (ColliderBox col1 : collider)
+                for (ColliderBox col2 : elem.getCollider())
+                    if (col1.collides(pos, col2, elem.getPosition()) && !elem.getExploded())
+                        return elem;
+        return null;
     }
 
     public boolean checkExplodedBombCollision(Position pos, ColliderBox[] collider) {

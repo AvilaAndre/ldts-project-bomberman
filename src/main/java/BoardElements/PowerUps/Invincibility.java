@@ -14,7 +14,7 @@ public class Invincibility extends PowerUp {
     @Override
     public void affect(Bomberman player_) {
         player_.setInvincibility(true);
-        player_.setInvincibilityTicksLeft(40);
+        player_.setInvincibilityTicksLeft(140);
     }
 
     @Override

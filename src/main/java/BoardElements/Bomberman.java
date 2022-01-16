@@ -2,11 +2,13 @@ package BoardElements;
 
 import BoardComponents.Board;
 import BoardComponents.BoardElement;
+import DrawingMethods.DrawingAnimation;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
 import DrawingMethods.DrawingMethod;
 import Structures.ColliderBox;
 import Structures.Position;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Bomberman extends BoardElement {
     String name;
@@ -16,13 +18,15 @@ public class Bomberman extends BoardElement {
     int bombRadius = 1;
     boolean invincibility = false;
     int invincibilityTicks;
-    boolean shield = false;
+    boolean invincibilityEffect = true;
+    boolean shield = true;
     boolean pushTheBomb = false;
 
     DrawingMethod moveUpVisual = null;
     DrawingMethod moveDownVisual = null;
     DrawingMethod moveLeftVisual = null;
     DrawingMethod moveRightVisual = null;
+    DrawingMethod shieldVisual = null;
 
     enum STATE {UP, DOWN, LEFT, RIGHT, DEAD}
 
@@ -78,6 +82,12 @@ public class Bomberman extends BoardElement {
                 new DrawingBlock(new Position(1,2), 1, 1, null, color_, 'e'),
                 new DrawingBlock(new Position(2,2), 1, 1, null, color_, 'd'),
         });
+        shieldVisual = new DrawingAnimation(new DrawingImage[] {
+                new DrawingImage(new DrawingBlock[] {new DrawingBlock(new Position(2,0), 1, 1, null, color_, '?')}),
+                new DrawingImage(new DrawingBlock[] {new DrawingBlock(new Position(2,0), 1, 1, null, color_, '!')}),
+                new DrawingImage(new DrawingBlock[] {new DrawingBlock(new Position(2,0), 1, 1, null, color_, '@')}),
+                new DrawingImage(new DrawingBlock[] {new DrawingBlock(new Position(2,0), 1, 1, null, color_, '!')})
+        },new int[] {10, 10, 10, 10}, false);
     }
 
     @Override
@@ -100,6 +110,24 @@ public class Bomberman extends BoardElement {
             }
             default:
                 return moveDownVisual;
+        }
+    }
+
+    public void draw(TextGraphics graphics_) {
+        if (invincibility)
+            if (invincibilityEffect) {
+                invincibilityEffect = false;
+                return;
+            }
+            else
+                invincibilityEffect = true;
+
+        DrawingMethod visual = getVisual();
+        graphics_.setBackgroundColor(getBoard().getBackColor());
+        if (visual != null) {
+            visual.draw(graphics_, getPosition(), true);
+            if (shield)
+                shieldVisual.draw(graphics_, getPosition(), true);
         }
     }
 
@@ -135,6 +163,15 @@ public class Bomberman extends BoardElement {
             return true;
         }
         return false;
+    }
+
+    public void loop() {
+        if (invincibility) {
+            invincibilityTicks--;
+            if (invincibilityTicks < 0) {
+                invincibility = false;
+            }
+        }
     }
 
     public String getName() {
@@ -182,9 +219,18 @@ public class Bomberman extends BoardElement {
     }
 
     public void getHurt() {
-        lives -= 1;
-        invincibility = true;
-        invincibilityTicks = 10;
+        if (!invincibility) {
+            if (shield) {
+                shield = false;
+                invincibility = true;
+                invincibilityTicks = 15;
+            }
+            else {
+                lives -= 1;
+                invincibility = true;
+                invincibilityTicks = 15;
+            }
+        }
     }
 
     public boolean getShield() {

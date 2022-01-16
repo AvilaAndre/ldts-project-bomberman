@@ -17,9 +17,10 @@ public class Bomb extends BoardElement {
     private final int radius;
     private boolean exploded = false;
     private final Bomberman owner;
+
     enum DIRECTION {UP, DOWN, LEFT, RIGHT};
-    DIRECTION moveDirection;
-    int moveTicks = 3;
+    DIRECTION moveDirection = null;
+    int moveTicks = 4;
     int moveTicksLeft = moveTicks;
 
     private DrawingAnimation explosionAnim = new DrawingAnimation(new DrawingImage[]{
@@ -64,6 +65,49 @@ public class Bomb extends BoardElement {
 
     @Override
     public boolean action() {
+        if (moveDirection != null && !exploded) {
+            moveTicksLeft--;
+            if (moveTicksLeft < 0) {
+                switch (moveDirection) {
+                    case UP:
+                        if (getBoard().checkCollision(new Position(this.getPosition().getX(), this.getPosition().getY()-1), this.getCollider())){
+                            setPosition(new Position(this.getPosition().getX(), this.getPosition().getY()-1));
+                            moveTicksLeft = moveTicks;
+                        } else {
+                            moveTicksLeft = 0;
+                            moveDirection = null;
+                        }
+                        break;
+                    case RIGHT:
+                        if (getBoard().checkCollision(new Position(this.getPosition().getX() + 1, this.getPosition().getY()), this.getCollider())){
+                            setPosition(new Position(this.getPosition().getX() + 1, this.getPosition().getY()));
+                            moveTicksLeft = moveTicks;
+                        } else {
+                            moveTicksLeft = 0;
+                            moveDirection = null;
+                        }
+                        break;
+                    case DOWN:
+                        if (getBoard().checkCollision(new Position(this.getPosition().getX(), this.getPosition().getY() + 1), this.getCollider())){
+                            setPosition(new Position(this.getPosition().getX(), this.getPosition().getY() + 1));
+                            moveTicksLeft = moveTicks;
+                        } else {
+                            moveTicksLeft = 0;
+                            moveDirection = null;
+                        }
+                        break;
+                    case LEFT:
+                        if (getBoard().checkCollision(new Position(this.getPosition().getX() - 1, this.getPosition().getY()), this.getCollider())){
+                            setPosition(new Position(this.getPosition().getX() - 1, this.getPosition().getY()));
+                            moveTicksLeft = moveTicks;
+                        } else {
+                            moveTicksLeft = 0;
+                            moveDirection = null;
+                        }
+                        break;
+                }
+            }
+        }
         ticksLeft--;
         if (!exploded) {
             if (ticksLeft < 0)
@@ -134,5 +178,24 @@ public class Bomb extends BoardElement {
 
     public int getMoveTicksLeft() {
         return this.moveTicksLeft;
+    }
+
+    public void setMoving(String dir_) {
+        switch (dir_) {
+            case "up" :
+                moveDirection = DIRECTION.UP;
+                break;
+            case "right" :
+                moveDirection = DIRECTION.RIGHT;
+                break;
+            case "down" :
+                moveDirection = DIRECTION.DOWN;
+                break;
+            case "left" :
+                moveDirection = DIRECTION.LEFT;
+                break;
+            default:
+                moveDirection = null;
+        }
     }
 }
