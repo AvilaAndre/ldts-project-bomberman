@@ -23,18 +23,17 @@ public class Application {
 
     private void run() {
         try {
-            URL resource = getClass().getClassLoader().getResource("GameFont.ttf");
-            File fontFile = new File(resource.toURI());
-            Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
+            Font font =  Font.createFont(Font.TRUETYPE_FONT,
+                    new File(getClass().getClassLoader().getResource("GameFont.ttf").toURI()));
 
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(font);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
 
             DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, 12);
-            AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-            factory.setTerminalEmulatorFontConfiguration(fontConfig);
+            factory.setTerminalEmulatorFontConfiguration(
+                    AWTTerminalFontConfiguration.newInstance(
+                            font.deriveFont(Font.PLAIN, 12)));
+
             factory.setForceAWTOverSwing(true);
             factory.setInitialTerminalSize(new TerminalSize(98, 52));
 
@@ -54,8 +53,11 @@ public class Application {
             screen.doResizeIfNecessary();
             screen.clear();
             screen.refresh();
+
             new MenuController(screen, 98, 52);
+
             screen.stopScreen();
+
         } catch (IOException | InterruptedException | FontFormatException | URISyntaxException e) {
             e.printStackTrace();
         }
