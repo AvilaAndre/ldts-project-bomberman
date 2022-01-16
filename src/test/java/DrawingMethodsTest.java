@@ -1,6 +1,7 @@
 import DrawingMethods.DrawingAnimation;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
+import DrawingMethods.DrawingText;
 import Structures.Position;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -89,5 +90,20 @@ public class DrawingMethodsTest {
         testAnimation1.restart();
         testAnimation1.draw(graphics, new Position(0, 0), false);
         assertEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(0,0).getBackgroundColor());
+    }
+
+    @Test
+    public void TextTest() throws IOException {
+        DefaultTerminalFactory factory = new DefaultTerminalFactory();
+        factory.setInitialTerminalSize(new TerminalSize(98, 52));
+        Terminal terminal = factory.createTerminal();
+        Screen screen = new TerminalScreen(terminal);
+        TextGraphics graphics = screen.newTextGraphics();
+
+        DrawingText testText1 = new DrawingText(new Position(0,0), "Test line!", "#FF0000", "#0000FF");
+
+        testText1.draw(graphics, new Position(0,0), false);
+        assertEquals(TextColor.Factory.fromString("#FF0000"), screen.getBackCharacter(2,0).getBackgroundColor());
+        assertNotEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(2,0).getForegroundColor());
     }
 }
