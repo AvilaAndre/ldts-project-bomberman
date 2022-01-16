@@ -12,6 +12,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Bomberman extends BoardElement {
     String name;
+    String color;
     int lives = 0;
     int bombLimit = 1;
     int activeBombs = 0;
@@ -19,14 +20,14 @@ public class Bomberman extends BoardElement {
     boolean invincibility = false;
     int invincibilityTicks;
     boolean invincibilityEffect = true;
-    boolean shield = true;
+    boolean shield = false;
     boolean pushTheBomb = false;
 
-    DrawingMethod moveUpVisual = null;
-    DrawingMethod moveDownVisual = null;
-    DrawingMethod moveLeftVisual = null;
-    DrawingMethod moveRightVisual = null;
-    DrawingMethod shieldVisual = null;
+    DrawingMethod moveUpVisual;
+    DrawingMethod moveDownVisual;
+    DrawingMethod moveLeftVisual;
+    DrawingMethod moveRightVisual;
+    DrawingMethod shieldVisual;
 
     enum STATE {UP, DOWN, LEFT, RIGHT, DEAD}
 
@@ -37,7 +38,8 @@ public class Bomberman extends BoardElement {
         this.name = name_;
         if (color_ != null)
             this.lives = 1;
-
+        else state = STATE.DEAD;
+        this.color = color_;
         moveUpVisual = new DrawingImage(new DrawingBlock[] {
                 new DrawingBlock(new Position(0,0), 1, 1, null, color_, 'g'),
                 new DrawingBlock(new Position(1,0), 1, 1, color_, "#000000", ' '),
@@ -133,30 +135,40 @@ public class Bomberman extends BoardElement {
 
     @Override
     public void moveUp() {
+        if (state == STATE.DEAD)
+            return;
         state = STATE.UP;
         setPosition(new Position(getPosition().getX(), getPosition().getY() - 1));
     }
 
     @Override
     public void moveDown() {
+        if (state == STATE.DEAD)
+            return;
         state = STATE.DOWN;
         setPosition(new Position(getPosition().getX(), getPosition().getY() + 1));
     }
 
     @Override
     public void moveLeft() {
+        if (state == STATE.DEAD)
+            return;
         state = STATE.LEFT;
         setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
     }
 
     @Override
     public void moveRight() {
+        if (state == STATE.DEAD)
+            return;
         state = STATE.RIGHT;
         setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
     }
 
     @Override
     public boolean action() {
+        if (state == STATE.DEAD)
+            return false;
         if (bombLimit > activeBombs) {
             if (getBoard().addBomb(this.getPosition(), bombRadius, this))
                 activeBombs++;
@@ -178,11 +190,17 @@ public class Bomberman extends BoardElement {
         return this.name;
     }
 
+    public String getColor() {
+        return this.color;
+    }
+
     public int getBombRadius() {
         return this.bombRadius;
     }
 
     public void setBombRadius(int newBombRadius_) {
+        if (state == STATE.DEAD)
+            return;
         this.bombRadius = newBombRadius_;
     }
 
@@ -191,6 +209,8 @@ public class Bomberman extends BoardElement {
     }
 
     public void setBombLimit(int limit_) {
+        if (state == STATE.DEAD)
+            return;
         this.bombLimit = limit_;
     }
 
@@ -199,7 +219,11 @@ public class Bomberman extends BoardElement {
     }
 
     public void setLives(int lives_) {
+        if (state == STATE.DEAD)
+            return;
         this.lives = lives_;
+        if (lives < 1)
+            state = STATE.DEAD;
     }
 
     public boolean isAlive() {
@@ -211,11 +235,9 @@ public class Bomberman extends BoardElement {
     }
 
     public void setActiveBombs(int activeBombs) {
+        if (state == STATE.DEAD)
+            return;
         this.activeBombs = activeBombs;
-    }
-
-    public void increaseActiveBombs() {
-
     }
 
     public void getHurt() {
@@ -229,6 +251,8 @@ public class Bomberman extends BoardElement {
                 lives -= 1;
                 invincibility = true;
                 invincibilityTicks = 15;
+                if (lives < 1)
+                    state = STATE.DEAD;
             }
         }
     }
@@ -238,6 +262,8 @@ public class Bomberman extends BoardElement {
     }
 
     public void setShield(boolean shield_) {
+        if (state == STATE.DEAD)
+            return;
         this.shield = shield_;
     }
 
@@ -246,6 +272,8 @@ public class Bomberman extends BoardElement {
     }
 
     public void setPushTheBomb(boolean push_) {
+        if (state == STATE.DEAD)
+            return;
         this.pushTheBomb = push_;
     }
 
@@ -254,6 +282,8 @@ public class Bomberman extends BoardElement {
     }
 
     public void setInvincibility(boolean invincibility_) {
+        if (state == STATE.DEAD)
+            return;
         this.invincibility = invincibility_;
     }
 
@@ -262,6 +292,8 @@ public class Bomberman extends BoardElement {
     }
 
     public void setInvincibilityTicksLeft(int invincibilityTicks_) {
+        if (state == STATE.DEAD)
+            return;
         this.invincibilityTicks = invincibilityTicks_;
     }
 }

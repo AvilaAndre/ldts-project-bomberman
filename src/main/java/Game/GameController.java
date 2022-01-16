@@ -106,7 +106,7 @@ public class GameController {
                     case 'b':
                         model.playerAction(3);
                         break;
-                    case ':':
+                    case ',':
                     case ';':
                         model.playerAction(4);
                         break;
