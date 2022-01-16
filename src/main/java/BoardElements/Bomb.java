@@ -123,7 +123,11 @@ public class Bomb extends BoardElement {
         return false;
     }
 
-    private void explode(){
+    private void explode() {
+        if (radius > 4)
+            this.getBoard().getAudioPlayer().playExplosionSound2();
+        else
+            this.getBoard().getAudioPlayer().playExplosionSound1();
         this.exploded = true;
         ticksLeft = 6;
         int[] explosionData = getBoard().bombExplosion(this.radius, this.getPosition());

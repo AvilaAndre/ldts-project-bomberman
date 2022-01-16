@@ -8,6 +8,7 @@ import BoardElements.PowerUps.PowerUpFactory;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
 import Game.GameModel;
+import Music.MusicPlayer;
 import Structures.ColliderBox;
 import Structures.Position;
 import com.googlecode.lanterna.TextColor;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
+    MusicPlayer audio = new MusicPlayer();
     GameModel model;
     TextColor backColor = TextColor.Factory.fromString("#999999");
     Random r = new Random();
@@ -102,6 +104,8 @@ public class Board {
     public ArrayList<BoardElement> getDrawQueue() {
         return drawQueue;
     }
+
+    public MusicPlayer getAudioPlayer() { return this.audio; }
 
     public TextColor getBackColor() {
         return this.backColor;

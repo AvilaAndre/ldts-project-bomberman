@@ -59,9 +59,9 @@ public class GameView {
                     new DrawingBlock(new Position(x + 18, y + 6), 1, 1, "#FFFFFF", "#000000", (char) (player_.getBombRadius() + 48)),
             }).draw(graphics_, new Position(0, 0), false);
             if (player_.getShield())
-                new DrawingBlock(new Position(x + (x < 50? 14 : 4) , y + 10), 1, 1, "#FFFFFF", "#F0F000", '\'').draw(graphics_, new Position(0,0), false);
+                new DrawingBlock(new Position(x + (x < 50? 14 : 4) , y + 10), 1, 1, "#EEEEEE", "#F0F000", '\'').draw(graphics_, new Position(0,0), false);
             if (player_.getPushTheBomb())
-                new DrawingBlock(new Position(x + (x < 50? 16 : 6), y + 10), 1, 1, "#FFFFFF", "#000000", '-').draw(graphics_, new Position(0,0), false);
+                new DrawingBlock(new Position(x + (x < 50? 16 : 6), y + 10), 1, 1, "#EEEEEE", "#000000", '-').draw(graphics_, new Position(0,0), false);
         }
         else {
             if (player_.getColor() != null) {
