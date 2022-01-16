@@ -102,7 +102,7 @@ public class DrawingMethodsTest {
 
         DrawingText testText1 = new DrawingText(new Position(0,0), "Test line!", "#FF0000", "#0000FF");
 
-        testText1.draw(graphics, new Position(0,0), false);
+        testText1.draw(graphics, new Position(0,0));
         assertEquals(TextColor.Factory.fromString("#FF0000"), screen.getBackCharacter(2,0).getBackgroundColor());
         assertNotEquals(TextColor.Factory.fromString("#000000"), screen.getBackCharacter(2,0).getForegroundColor());
     }
