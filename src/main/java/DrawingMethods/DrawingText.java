@@ -21,7 +21,7 @@ public class DrawingText {
         textChars = drawingBlocks.toArray(textChars);
     }
 
-    public void draw(TextGraphics graphics, Position position) {
+    public void draw(TextGraphics graphics) {
         for (DrawingBlock block : textChars)
             block.draw(graphics, new Position(0,0), false);
     }
