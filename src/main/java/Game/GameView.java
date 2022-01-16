@@ -46,9 +46,5 @@ public class GameView {
             playerThree_.draw(graphics_);
         if (playerFour_.isAlive())
             playerFour_.draw(graphics_);
-
-
-        DrawingBlock yo = new DrawingBlock(new Position(0, 0), 3, 3, "#0000F0", null, ' ');
-        yo.draw(graphics_, new Position(8,8), true);
     }
 }

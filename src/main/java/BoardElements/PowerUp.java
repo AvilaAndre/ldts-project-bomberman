@@ -12,12 +12,14 @@ public abstract class PowerUp extends BoardElement {
     }
 
     @Override
-    public DrawingMethod getVisual() {
-        return null;
-    }
+    public abstract DrawingMethod getVisual();
 
     public abstract void affect(Bomberman player_);
 
     public abstract String getType();
 
+    @Override
+    public String toString() {
+        return getType();
+    }
 }

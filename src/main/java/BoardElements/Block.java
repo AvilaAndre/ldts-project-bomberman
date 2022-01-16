@@ -23,6 +23,7 @@ public class Block extends BoardElement {
     public void destroy() {
         if (!destroyed && destructible) {
             destroyed = true;
+            getBoard().createPowerUp(this.getPosition());
             getBoard().removeBlock(this);
         }
     }

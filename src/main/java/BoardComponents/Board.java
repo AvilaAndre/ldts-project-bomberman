@@ -3,6 +3,8 @@ package BoardComponents;
 import BoardElements.Block;
 import BoardElements.Bomb;
 import BoardElements.Bomberman;
+import BoardElements.PowerUp;
+import BoardElements.PowerUps.PowerUpFactory;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
 import Game.GameModel;
@@ -12,14 +14,16 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Board {
     GameModel model;
     TextColor backColor = TextColor.Factory.fromString("#999999");
+    Random r = new Random();
     private final TextGraphics graphics = null;
     private ArrayList<BoardElement> blocks = new ArrayList<>();
     private ArrayList<Bomb> bombs = new ArrayList<>();
-    private ArrayList<BoardElement> powerups = new ArrayList<>();
+    private ArrayList<PowerUp> powerups = new ArrayList<>();
     private ArrayList<BoardElement> drawQueue = new ArrayList<>();
 
     public Board(String code, GameModel model_) {
@@ -67,6 +71,10 @@ public class Board {
             }
     }
 
+    public void setRandomSeed(long seed_) {
+        this.r = new Random(seed_);
+    }
+
     public void loop() {
         drawQueue.clear();
         bombs.removeIf(bomb -> bomb.action() && bomb.getExploded());
@@ -75,9 +83,15 @@ public class Board {
                 player.loop();
                 if (!checkExplodedBombCollision(player.getPosition(), player.getCollider()))
                     player.getHurt();
+                PowerUp power = getPowerUpCollision(player.getPosition(), player.getCollider());
+                if (power != null) {
+                    power.affect(player);
+                    powerups.removeIf(pow -> pow == power);
+                }
             }
         }
         drawQueue.addAll(blocks);
+        drawQueue.addAll(powerups);
         drawQueue.addAll(bombs);
     }
 
@@ -148,8 +162,21 @@ public class Board {
         return true;
     }
 
+    public PowerUp getPowerUpCollision(Position pos, ColliderBox[] collider) {
+        for (PowerUp elem : powerups)
+            for (ColliderBox col1 : collider)
+                for (ColliderBox col2 : elem.getCollider())
+                    if (col1.collides(pos, col2, elem.getPosition()))
+                        return elem;
+        return null;
+    }
+
     public void removeBlock(Block block) {
         blocks.removeIf(blo -> blo == block);
+    }
+
+    public ArrayList<PowerUp> getPowerUps() {
+        return this.powerups;
     }
 
     public ArrayList<Bomb> getBombs() {
@@ -217,5 +244,26 @@ public class Board {
             if (block.getPosition() == position)
                 return (Block) block;
         return null;
+    }
+
+    public void createPowerUp(Position position_) {
+        PowerUpFactory factory = new PowerUpFactory();
+        int choice = r.nextInt((250) + 1);
+        int power;
+        if (choice < 150)
+            power = -1;
+        else if (choice < 177)
+            power = 0;
+        else if (choice < 199)
+            power = 1;
+        else if (choice < 217)
+            power = 4;
+        else if (choice < 232)
+            power = 3;
+        else if (choice < 242)
+            power = 2;
+        else power = 5;
+        if (power > -1)
+            powerups.add(factory.getPowerUp(position_, this, power));
     }
 }

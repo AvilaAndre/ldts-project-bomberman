@@ -249,4 +249,24 @@ public class PowerUpTest {
         assertTrue(player.getInvincibility());
         assertTrue(player.getShield());
     }
+
+    @Test
+    public void createPowerUpEffect() {
+        testBoard.setRandomSeed(1234);
+        testModel.getGameBoard().createPowerUp(new Position(1, 2));
+        testModel.getGameBoard().createPowerUp(new Position(2, 1));
+        testModel.getGameBoard().createPowerUp(new Position(7, 7));
+        testModel.getGameBoard().createPowerUp(new Position(7, 8));
+        testModel.getGameBoard().createPowerUp(new Position(8, 7));
+        testModel.getGameBoard().createPowerUp(new Position(8, 8));
+        testModel.getGameBoard().createPowerUp(new Position(2, 1));
+        
+        //As this test is made with random results there is no way of predicting the result, therefore this test's
+        //assert will be with this specific result, found after the code was written.
+        assertEquals("ExtraBomb", testModel.getGameBoard().getPowerUps().get(0).toString());
+        assertEquals("BlastSize", testModel.getGameBoard().getPowerUps().get(1).toString());
+        assertEquals("Invincibility", testModel.getGameBoard().getPowerUps().get(2).toString());
+        assertEquals("BlastSize", testModel.getGameBoard().getPowerUps().get(3).toString());
+        assertEquals("ExtraLife", testModel.getGameBoard().getPowerUps().get(4).toString());
+    }
 }

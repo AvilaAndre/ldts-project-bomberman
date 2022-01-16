@@ -9,7 +9,7 @@ public class DrawingAnimation extends DrawingMethod{
     private DrawingImage[] frames = null;
     private int[] frameDuration = null;
     private boolean paused = false;
-    private boolean pauseOnEnding;
+    private final boolean pauseOnEnding;
     private int size = 0;
 
     public DrawingAnimation(DrawingImage[] images_, int[] durations_, boolean pauseOnEnding_) {

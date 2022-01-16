@@ -168,7 +168,7 @@ public class GameModel {
                 }
                 break;
             case 4:
-                canMove = gameBoard.checkCollision(new Position(playerThree.getPosition().getX() - 1, playerFour.getPosition().getY()), playerFour.getCollider());
+                canMove = gameBoard.checkCollision(new Position(playerFour.getPosition().getX() - 1, playerFour.getPosition().getY()), playerFour.getCollider());
                 if (canMove)
                     playerFour.moveLeft();
                 if (playerFour.getPushTheBomb()) {
