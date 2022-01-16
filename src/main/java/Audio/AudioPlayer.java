@@ -32,8 +32,8 @@ public class AudioPlayer {
         this.loseSound = loadMusic("/soundfx/lose.wav");
         this.powerupSound= loadMusic("/soundfx/powerup2.wav");
         this.shieldSound= loadMusic("/soundfx/shield.wav");
-        musicVolume = 1.0f;
-        fxVolume = 1.0f;
+        setMusicVolume(0.5f);
+        setFxVolume(0.8f);
     }
 
     public static AudioPlayer getInstance() {
@@ -116,6 +116,27 @@ public class AudioPlayer {
         shieldSound.loop(0);
     }
 
+    public void setMusicVolume(float volume_) {
+        musicVolume  = volume_;
+        setClipVolume(menuMusic, musicVolume);
+        setClipVolume(gameMusic, musicVolume);
+    }
 
+    public void setFxVolume(float volume_) {
+        fxVolume  = volume_;
+        setClipVolume(explosionSound1, fxVolume);
+        setClipVolume(explosionSound2, fxVolume);
+        setClipVolume(hurtSound, fxVolume);
+        setClipVolume(loseSound, fxVolume);
+        setClipVolume(powerupSound, fxVolume);
+        setClipVolume(shieldSound, fxVolume);
+    }
+
+    private void setClipVolume(Clip clip_, float volume_) {
+        FloatControl gainControl = (FloatControl) clip_.getControl(FloatControl.Type.MASTER_GAIN);
+        float range = gainControl.getMaximum() - gainControl.getMinimum();
+        float gain = (range * volume_) + gainControl.getMinimum();
+        gainControl.setValue(gain);
+    }
 }
 

@@ -241,6 +241,8 @@ public class Bomberman extends BoardElement {
     }
 
     public void getHurt() {
+        if (state == STATE.DEAD)
+            return;
         if (!invincibility) {
             if (shield) {
                 shield = false;
