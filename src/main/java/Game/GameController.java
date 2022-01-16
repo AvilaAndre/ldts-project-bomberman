@@ -1,5 +1,6 @@
 package Game;
 
+import Music.MusicPlayer;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
@@ -10,6 +11,10 @@ public class GameController {
     Screen screen;
     GameModel model;
     GameView view;
+    //TODO
+    //MusicPlayer mp = new MusicPlayer();
+    //mp.startMusic();
+
 
     public GameController(Screen screen_, int width_, int height_, String playerOne_, String playerTwo_, String playerThree_, String playerFour_) {
         this.model = new GameModel(playerOne_, playerTwo_, playerThree_, playerFour_);
