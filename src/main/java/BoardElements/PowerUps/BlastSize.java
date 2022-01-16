@@ -25,6 +25,7 @@ public class BlastSize extends PowerUp {
     @Override
     public void affect(Bomberman player_) {
         player_.setBombRadius(player_.getBombRadius() + 1);
+        player_.getBoard().getAudioPlayer().playPowerUpSound();
     }
 
     @Override

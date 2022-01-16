@@ -64,6 +64,7 @@ public class Invincibility extends PowerUp {
     public void affect(Bomberman player_) {
         player_.setInvincibility(true);
         player_.setInvincibilityTicksLeft(140);
+        player_.getBoard().getAudioPlayer().playPowerUpSound();
     }
 
     @Override

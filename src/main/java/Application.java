@@ -1,5 +1,5 @@
 import Menu.MenuController;
-import Music.MusicPlayer;
+import Audio.AudioPlayer;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -14,7 +14,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 public class Application {
     public static void main(String[] args) {
@@ -44,8 +43,6 @@ public class Application {
                     e.getWindow().dispose();
                 }
             });
-            MusicPlayer mp = new MusicPlayer();
-            mp.startMusic();
             
             Screen screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null);

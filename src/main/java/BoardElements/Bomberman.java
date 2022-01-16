@@ -246,13 +246,17 @@ public class Bomberman extends BoardElement {
                 shield = false;
                 invincibility = true;
                 invincibilityTicks = 15;
+                this.getBoard().getAudioPlayer().playShieldSound();
             }
             else {
                 lives -= 1;
                 invincibility = true;
                 invincibilityTicks = 15;
-                if (lives < 1)
+                if (lives < 1) {
                     state = STATE.DEAD;
+                    this.getBoard().getAudioPlayer().playLoseSound();
+                }
+                else this.getBoard().getAudioPlayer().playHurtSound();
             }
         }
     }

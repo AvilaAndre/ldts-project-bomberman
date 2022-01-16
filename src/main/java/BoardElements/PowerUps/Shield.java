@@ -25,6 +25,7 @@ public class Shield extends PowerUp {
     @Override
     public void affect(Bomberman player_) {
         player_.setShield(true);
+        player_.getBoard().getAudioPlayer().playPowerUpSound();
     }
 
     @Override

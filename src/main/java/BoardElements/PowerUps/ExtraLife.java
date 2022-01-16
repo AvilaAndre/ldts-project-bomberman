@@ -25,6 +25,7 @@ public class ExtraLife extends PowerUp {
     @Override
     public void affect(Bomberman player_) {
         player_.setLives(player_.getLives() + 1);
+        player_.getBoard().getAudioPlayer().playPowerUpSound();
     }
 
     @Override
