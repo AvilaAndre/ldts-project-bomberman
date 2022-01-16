@@ -47,6 +47,7 @@ public class Application {
             });
             MusicPlayer mp = new MusicPlayer();
             mp.startMusic();
+            
             Screen screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null);
             screen.startScreen();
