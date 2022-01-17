@@ -168,6 +168,10 @@ public class Bomb extends BoardElement {
         explosionAnim = new DrawingAnimation(new DrawingImage[] { image1, image2}, new int[]{2, 2}, false);
     }
 
+    public Bomberman getOwner() {
+        return this.owner;
+    }
+
     public boolean getExploded() {
         return this.exploded;
     }
