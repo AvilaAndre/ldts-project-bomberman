@@ -8,12 +8,16 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class Application {
     public static void main(String[] args) {
@@ -43,6 +47,10 @@ public class Application {
                     e.getWindow().dispose();
                 }
             });
+
+            ((AWTTerminalFrame) terminal).setTitle("BOMBERMAN");
+            ((AWTTerminalFrame) terminal).setIconImage(ImageIO.read(getClass().getClassLoader().getResource("icon.png")));
+            ((AWTTerminalFrame) terminal).setResizable(false);
             
             Screen screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null);
