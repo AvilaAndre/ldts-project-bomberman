@@ -54,10 +54,10 @@ public class GameView {
                     new DrawingBlock(new Position(x + 2, y + 4), 1, 1, "#FFFFFF", "#F00000", '"'),
                     new DrawingBlock(new Position(x + 2, y + 5), 1, 1, "#FFFFFF", "#000000", '/'),
                     new DrawingBlock(new Position(x + 2, y + 6), 1, 1, "#FFFFFF", "#F08800", ':'),
-                    new DrawingBlock(new Position(x + 18, y + 4), 1, 1, "#FFFFFF", "#000000", (char) (player_.getLives() + 48)),
-                    new DrawingBlock(new Position(x + 18, y + 5), 1, 1, "#FFFFFF", "#000000", (char) (player_.getBombLimit() + 48)),
-                    new DrawingBlock(new Position(x + 18, y + 6), 1, 1, "#FFFFFF", "#000000", (char) (player_.getBombRadius() + 48)),
             }).draw(graphics_, new Position(0, 0), false);
+            new DrawingText(new Position(x + ((player_.getLives() > 10)? 17 : 18), y + 4), String.valueOf(player_.getLives()), "#FFFFFF", "#000000").draw(graphics_);
+            new DrawingText(new Position(x + ((player_.getBombLimit() > 10)? 17 : 18), y + 5), String.valueOf(player_.getBombLimit()), "#FFFFFF", "#000000").draw(graphics_);
+            new DrawingText(new Position(x + ((player_.getBombRadius() > 10)? 17 : 18), y + 6), String.valueOf(player_.getBombRadius()), "#FFFFFF", "#000000").draw(graphics_);
             if (player_.getShield())
                 new DrawingBlock(new Position(x + (x < 50? 14 : 4) , y + 10), 1, 1, "#EEEEEE", "#F0F000", '\'').draw(graphics_, new Position(0,0), false);
             if (player_.getPushTheBomb())
