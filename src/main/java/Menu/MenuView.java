@@ -1,5 +1,6 @@
 package Menu;
 
+import DrawingMethods.DrawingAnimation;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
 import Structures.Position;

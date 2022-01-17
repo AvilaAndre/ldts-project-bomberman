@@ -120,6 +120,6 @@ public class GameController {
 
     public void draw(TextGraphics graphics) {
         model.gameBoard.loop();
-        view.draw(graphics, model.gameBoard.getDrawQueue(), model.playerOne, model.playerTwo, model.playerThree, model.playerFour);
+        view.draw(graphics, model.gameBoard.getDrawQueue(), model.playerOne, model.playerTwo, model.playerThree, model.playerFour, model.getGameBoard().getEliminationsQueue());
     }
 }
