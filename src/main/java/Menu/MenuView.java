@@ -284,6 +284,13 @@ public class MenuView {
         graphics_.fillRectangle(new TerminalPosition(51, 24), new TerminalSize(1, 3), ' ');
         graphics_.fillRectangle(new TerminalPosition(48, 18), new TerminalSize(1, 1), ' ');
         graphics_.fillRectangle(new TerminalPosition(54, 18), new TerminalSize(1, 1), ' ');
+        //DRAWING SETTINGS
+        //S
+        graphics_.fillRectangle(new TerminalPosition(31, 30), new TerminalSize(6, 1), ' ');
+        graphics_.fillRectangle(new TerminalPosition(30, 31), new TerminalSize(1, 4), ' ');
+        graphics_.fillRectangle(new TerminalPosition(31, 35), new TerminalSize(5, 1), ' ');
+        graphics_.fillRectangle(new TerminalPosition(36, 36), new TerminalSize(1, 4), ' ');
+        graphics_.fillRectangle(new TerminalPosition(30, 40), new TerminalSize(6, 1), ' ');
         if (mainMenuBomb < 232) {
             //BOMB SHADOW
             if (mainMenuBomb < 224) {
