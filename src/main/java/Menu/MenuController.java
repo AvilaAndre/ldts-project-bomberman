@@ -1,6 +1,5 @@
 package Menu;
 
-import Audio.AudioPlayer;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -13,8 +12,9 @@ import com.googlecode.lanterna.screen.Screen;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import Interface.GAME;
 
-public class MenuController {
+public class MenuController implements GAME {
 
     private Screen screen;
     private TextGraphics graphics;
@@ -34,11 +34,13 @@ public class MenuController {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(0, height_), "DELTA:" + deltaTime + "s");
 
-        run();
+        //run();
     }
 
-    private void updateView() throws IOException {
+    public void updateView() throws IOException {
         screen.clear();
+        view.drawMainMenu(graphics, model.getMenuOption(), model.getMenuState(), model.getPlayers());
+        /*
         switch (model.getState()) {
             case MAIN_MENU: {
                 view.drawMainMenu(graphics, model.getMenuOption(), model.getMenuState(), model.getPlayers());
@@ -48,91 +50,87 @@ public class MenuController {
                 model.game.draw(graphics);
                 break;
             }
-        }
+        }*/
         view.drawDebugDeltaTime(graphics, framesPerSecond);
         screen.refresh();
     }
 
-    private boolean getInput() throws IOException {
-        if (model.getState() == MenuModel.STATE.GAME) {
-            model.game.getInput();
-            return true;
-        }
+    @Override
+    public boolean getInput() throws IOException {
+
         KeyStroke key = screen.pollInput();
         if (key == null) return true;
         if (key.getKeyType() == KeyType.Character) {
             System.out.println(key.getCharacter());
         }
-        if (model.getState() == MenuModel.STATE.MAIN_MENU) {
-            switch (key.getKeyType()) {
-                case ArrowUp:
-                    model.mainMenuOptUp();
-                    break;
-                case ArrowDown:
-                    model.mainMenuOptDown();
-                    break;
-                case ArrowLeft:
-                    model.playerPreviousColor(1);
-                    break;
-                case ArrowRight:
-                    model.playerNextColor(1);
-                    break;
-                case Enter:
-                    model.mainMenuSelect();
-                    break;
-                case EOF:
-                case Escape:
-                    return false;
-                case Character: {
-                    switch (key.getCharacter()) {
-                        case '1':
-                            model.playerJoin(1);
-                            break;
-                        case '2':
-                            model.playerJoin(2);
-                            break;
-                        case '3':
-                            model.playerJoin(3);
-                            break;
-                        case '4':
-                            model.playerJoin(4);
-                            break;
-                        case 'a':
-                        case 'A':
-                            model.playerPreviousColor(2);
-                            break;
-                        case 'f':
-                        case 'F':
-                            model.playerPreviousColor(3);
-                            break;
-                        case 'j':
-                        case 'J':
-                            model.playerPreviousColor(4);
-                            break;
-                        case 'd':
-                        case 'D':
-                            model.playerNextColor(2);
-                            break;
-                        case 'h':
-                        case 'H':
-                            model.playerNextColor(3);
-                            break;
-                        case 'l':
-                        case 'L':
-                            model.playerNextColor(4);
-                            break;
-                    }
-                    break;
+        switch (key.getKeyType()) {
+            case ArrowUp:
+                model.mainMenuOptUp();
+                break;
+            case ArrowDown:
+                model.mainMenuOptDown();
+                break;
+            case ArrowLeft:
+                model.playerPreviousColor(1);
+                break;
+            case ArrowRight:
+                model.playerNextColor(1);
+                break;
+            case Enter:
+                model.mainMenuSelect();
+                break;
+            case EOF:
+            case Escape:
+                return false;
+            case Character: {
+                switch (key.getCharacter()) {
+                    case '1':
+                        model.playerJoin(1);
+                        break;
+                    case '2':
+                        model.playerJoin(2);
+                        break;
+                    case '3':
+                        model.playerJoin(3);
+                        break;
+                    case '4':
+                        model.playerJoin(4);
+                        break;
+                    case 'a':
+                    case 'A':
+                        model.playerPreviousColor(2);
+                        break;
+                    case 'f':
+                    case 'F':
+                        model.playerPreviousColor(3);
+                        break;
+                    case 'j':
+                    case 'J':
+                        model.playerPreviousColor(4);
+                        break;
+                    case 'd':
+                    case 'D':
+                        model.playerNextColor(2);
+                        break;
+                    case 'h':
+                    case 'H':
+                        model.playerNextColor(3);
+                        break;
+                    case 'l':
+                    case 'L':
+                        model.playerNextColor(4);
+                        break;
                 }
-                default:
-                    System.out.println("Not an option");
+                break;
             }
+            default:
+                System.out.println("Not an option");
         }
         return key.getKeyType() != KeyType.EOF;
     }
 
-
-    private void run() throws IOException, InterruptedException {
+    @Override
+    public void run() throws IOException, InterruptedException {
         long timePerFrame = 1000/framesPerSecond;
         long startTime = 0;
         long endTime = 0;
