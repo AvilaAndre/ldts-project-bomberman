@@ -269,4 +269,14 @@ public class GameModel {
     public Board getGameBoard() {
         return this.gameBoard;
     }
+
+    public int getPlayersAlive(){
+        int count = 0;
+        if (getPlayerOne().isAlive() ) count++;
+        if (getPlayerTwo().isAlive() ) count++;
+        if (getPlayerThree().isAlive() ) count++;
+        if (getPlayerFour().isAlive() ) count++;
+
+        return count;
+    }
 }
