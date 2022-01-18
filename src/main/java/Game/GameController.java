@@ -137,4 +137,18 @@ public class GameController {
             model.gameBoard.loop();
         view.draw(graphics, model.gameBoard.getDrawQueue(), model.playerOne, model.playerTwo, model.playerThree, model.playerFour, model.getGameBoard().getEliminationsQueue(), this.paused);
     }
+
+    public void drawWinner(TextGraphics graphics){
+        view.drawWinnerLetters(graphics);
+    }
+
+    public int getPlayersAlive(){
+        int count = 0;
+        if (model.getPlayerOne().isAlive() ) count++;
+        if (model.getPlayerTwo().isAlive() ) count++;
+        if (model.getPlayerThree().isAlive() ) count++;
+        if (model.getPlayerFour().isAlive() ) count++;
+
+        return count;
+    }
 }
