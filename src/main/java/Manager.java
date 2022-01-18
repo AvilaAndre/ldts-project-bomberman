@@ -35,7 +35,7 @@ public class Manager {
             setUp();
 
             MenuState = new MenuController(screen, width, height);
-            GameState = new GameController(screen, width, height, "", "", "", "");
+            //GameState = new GameController(screen, width, height, "", "", "", "");
 
             //OtherState = new OtherController()
 

@@ -1,6 +1,7 @@
 package Menu;
 
 import Audio.AudioPlayer;
+import Interface.GAME;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -14,7 +15,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class MenuController {
+public class MenuController implements GAME {
 
     private Screen screen;
     private TextGraphics graphics;
@@ -34,10 +35,10 @@ public class MenuController {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(0, height_), "DELTA:" + deltaTime + "s");
 
-        run();
+        //run();
     }
 
-    private void updateView() throws IOException {
+    public void updateView() throws IOException {
         screen.clear();
         switch (model.getState()) {
             case MAIN_MENU: {
@@ -53,7 +54,7 @@ public class MenuController {
         screen.refresh();
     }
 
-    private boolean getInput() throws IOException {
+    public boolean getInput() throws IOException {
         if (model.getState() == MenuModel.STATE.GAME) {
             model.game.getInput();
             return true;
@@ -129,20 +130,5 @@ public class MenuController {
             }
         }
         return key.getKeyType() != KeyType.EOF;
-    }
-
-
-    private void run() throws IOException, InterruptedException {
-        long timePerFrame = 1000/framesPerSecond;
-        long startTime = 0;
-        long endTime = 0;
-        do {
-            startTime = System.currentTimeMillis();
-            updateView();
-            endTime = System.currentTimeMillis();
-            if (endTime-startTime < timePerFrame)
-                Thread.sleep(timePerFrame - (endTime - startTime));
-            //Input
-        } while (getInput());
     }
 }
