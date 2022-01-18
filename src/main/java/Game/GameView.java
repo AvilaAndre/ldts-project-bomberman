@@ -19,6 +19,56 @@ public class GameView {
     ArrayList<DrawingAnimation> eliminationsPanel = new ArrayList<>();
     DrawingImage viewBackground;
 
+    private final DrawingAnimation winnerLetters = new DrawingAnimation(
+            new DrawingImage[] {
+                    new DrawingImage(
+                            new DrawingBlock[] {//26 -> 32
+                                    new DrawingBlock(new Position(26, 8), 1, 8, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(32, 8), 1, 8, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(27, 16), 1, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(28, 15), 1, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(29, 14), 1, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(30, 15), 1, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(31, 16), 1, 1, "#ffd700", null, ' '),
+                                    //35 -> 39
+                                    new DrawingBlock(new Position(35, 8), 5, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(35, 16), 5, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(37, 8), 1, 8, "#ffd700", null, ' '),
+                                    //43->48
+                                    new DrawingBlock(new Position(42, 8), 1, 9, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(47, 8), 1, 9, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(43, 10), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(44, 11), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(45, 12), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(46, 13), 1, 2, "#ffd700", null, ' '),
+                                    //51->56
+                                    new DrawingBlock(new Position(50, 8), 1, 9, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(55, 8), 1, 9, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(51, 10), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(52, 11), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(53, 12), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(54, 13), 1, 2, "#ffd700", null, ' '),
+                                    //60->
+                                    new DrawingBlock(new Position(58, 8), 6, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(58, 12), 6, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(58, 16), 6, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(59, 8), 1, 8, "#ffd700", null, ' '),
+
+                                    new DrawingBlock(new Position(66, 8), 5, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(67, 8), 1, 9, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(71, 9), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(70, 11), 1, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(68, 12), 2, 1, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(70, 13), 1, 2, "#ffd700", null, ' '),
+                                    new DrawingBlock(new Position(71, 15), 1, 2, "#ffd700", null, ' ')
+                            }
+
+                    ),
+                    new DrawingImage(
+                            new DrawingBlock[] {}
+                    )
+            }, new int[] {30, 20}, false);
+
     private final DrawingAnimation pausedLetters = new DrawingAnimation(
             new DrawingImage[] {
                     new DrawingImage(
@@ -401,4 +451,9 @@ public class GameView {
         if (paused)
             pausedLetters.draw(graphics_, new Position(0,0), false);
     }
+
+    void drawWinnerLetters(TextGraphics graphics){
+        winnerLetters.draw(graphics, new Position(0,0),false);
+    }
+
 }
