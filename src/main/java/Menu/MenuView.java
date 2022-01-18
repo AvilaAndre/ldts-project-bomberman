@@ -422,14 +422,20 @@ public class MenuView {
                 graphics_.setBackgroundColor(TextColor.Factory.fromString(fireYellowColor));
                 graphics_.fillRectangle(new TerminalPosition(27, option_ * optionSize + bombRow - 1), new TerminalSize(1, 1), ' ');
                 graphics_.fillRectangle(new TerminalPosition(28, option_ * optionSize + bombRow - 3), new TerminalSize(1, 1), ' ');
-            } else if (mainMenuBomb < 10) {
+            } else if (mainMenuBomb < 9) {
                 graphics_.setBackgroundColor(TextColor.Factory.fromString(fireRedColor));
                 graphics_.fillRectangle(new TerminalPosition(26, option_ * optionSize + bombRow - 2), new TerminalSize(1, 2), ' ');
                 graphics_.fillRectangle(new TerminalPosition(27, option_ * optionSize + bombRow - 3), new TerminalSize(1, 1), ' ');
                 graphics_.setBackgroundColor(TextColor.Factory.fromString(fireYellowColor));
                 graphics_.fillRectangle(new TerminalPosition(27, option_ * optionSize + bombRow - 2), new TerminalSize(2, 1), ' ');
-            } else
+            } else {
+                graphics_.setBackgroundColor(TextColor.Factory.fromString(fireRedColor));
+                graphics_.fillRectangle(new TerminalPosition(26, option_ * optionSize + bombRow - 2), new TerminalSize(1, 2), ' ');
+                graphics_.fillRectangle(new TerminalPosition(27, option_ * optionSize + bombRow - 3), new TerminalSize(1, 1), ' ');
+                graphics_.setBackgroundColor(TextColor.Factory.fromString(fireYellowColor));
+                graphics_.fillRectangle(new TerminalPosition(27, option_ * optionSize + bombRow - 2), new TerminalSize(2, 1), ' ');
                 mainMenuBomb = 0;
+            }
         }
         else {
             if (mainMenuBomb < 206) {

@@ -22,7 +22,7 @@ public class MenuModel {
     private String playerThree;
     private String playerFour;
 
-    private String[] playerColors = {"#58b06c", "#1c5888", "#a03c50", "#dbcd0f", "#db7b0f"};
+    private final String[] playerColors = {"#58b06c", "#1c5888", "#a03c50", "#dbcd0f", "#db7b0f"};
 
     //game
     public GameController game;
@@ -92,7 +92,9 @@ public class MenuModel {
     }
 
     public void mainMenuSelect(){
-        if (this.mainMenuOpt == 1 || this.mainMenuOpt == 2)
+        if (this.mainMenuOpt == 1 && playersNum() > 1)
+            mainMenuState = true;
+        else if (this.mainMenuOpt == 2)
             mainMenuState = true;
     }
 
