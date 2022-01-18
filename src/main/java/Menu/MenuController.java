@@ -1,6 +1,5 @@
 package Menu;
 
-import Audio.AudioPlayer;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -16,12 +15,11 @@ import java.net.URISyntaxException;
 
 public class MenuController {
 
-    private Screen screen;
-    private TextGraphics graphics;
-    private MenuModel model;
-    private MenuView view;
-    private int deltaTime = 0;
-    private int framesPerSecond = 15;
+    private final Screen screen;
+    private final TextGraphics graphics;
+    private final MenuModel model;
+    private final MenuView view;
+    private final int framesPerSecond = 15;
 
     public MenuController(Screen screen_, int width_, int height_) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         this.screen = screen_;
@@ -32,6 +30,7 @@ public class MenuController {
         graphics.fillRectangle(new TerminalPosition(0, height_), new TerminalSize(width_, height_+2), ' ');
         graphics.setForegroundColor(TextColor.Factory.fromString("#960000"));
         graphics.enableModifiers(SGR.BOLD);
+        int deltaTime = 0;
         graphics.putString(new TerminalPosition(0, height_), "DELTA:" + deltaTime + "s");
 
         run();
@@ -52,8 +51,12 @@ public class MenuController {
                 model.game.draw(graphics);
                 model.game.drawWinner(graphics);
                 break;
+            case OPTIONS_MENU: {
+                view.drawOptions(graphics, model.settings, model.MenuPlayer);
+                break;
+            }
         }
-        view.drawDebugDeltaTime(graphics, framesPerSecond);
+        //view.drawDebugDeltaTime(graphics, framesPerSecond);
         screen.refresh();
     }
 
@@ -79,12 +82,12 @@ public class MenuController {
             model.setState(MenuModel.STATE.END);
             return true;
         }
-
+        else if (model.getState() == MenuModel.STATE.OPTIONS_MENU) {
+            model.settings.getInput(screen, model.MenuPlayer, this.model);
+            return true;
+        }
         KeyStroke key = screen.pollInput();
         if (key == null) return true;
-        if (key.getKeyType() == KeyType.Character) {
-            System.out.println(key.getCharacter());
-        }
         if (model.getState() == MenuModel.STATE.MAIN_MENU) {
             switch (key.getKeyType()) {
                 case ArrowUp:

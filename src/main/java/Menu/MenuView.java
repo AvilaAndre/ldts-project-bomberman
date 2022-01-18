@@ -1,8 +1,11 @@
 package Menu;
 
+import Audio.AudioPlayer;
+import AudioSettings.AudioSettings;
 import DrawingMethods.DrawingAnimation;
 import DrawingMethods.DrawingBlock;
 import DrawingMethods.DrawingImage;
+import DrawingMethods.DrawingText;
 import Structures.Position;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
@@ -11,21 +14,40 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class MenuView {
-    private int width;
-    private int height;
-    private MenuModel model;
-    private String menuBackgroundColor = "#c8c8c8";
-    private String bombColor = "#2e2e2e";
-    private String bombWickColor = "#909090";
-    private String fireRedColor = "#ff2706";
-    private String fireYellowColor = "#ffee00";
-    private String lettersColor = "#1c5888";
+    private final int width;
+    private final int height;
+    private final MenuModel model;
+    private final String menuBackgroundColor = "#c8c8c8";
+    private final String bombColor = "#2e2e2e";
+    private final String lettersColor = "#1c5888";
     private int mainMenuBomb = 0;
-    private int bombRow = 9;
-    private int optionSize = 12;
+    private final int bombRow = 9;
+    private final int optionSize = 12;
 
 
-    private DrawingImage bombermanText = new DrawingImage(new DrawingBlock[] {
+    private final DrawingAnimation invincibleAnim = new DrawingAnimation(new DrawingImage[]{
+            new DrawingImage(new DrawingBlock[]{
+                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#F00000", '=')
+            }),
+            new DrawingImage(new DrawingBlock[]{
+                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#F0F000", '='),
+            }),
+            new DrawingImage(new DrawingBlock[]{
+                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#00F000", '='),
+            }),
+            new DrawingImage(new DrawingBlock[]{
+                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#00F0F0", '='),
+            }),
+            new DrawingImage(new DrawingBlock[]{
+                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#00000F", '='),
+            }),
+            new DrawingImage(new DrawingBlock[]{
+                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#F000F0", '='),
+            })
+    }, new int[]{2, 2}, false);
+
+
+    private final DrawingImage bombermanText = new DrawingImage(new DrawingBlock[] {
             //B
             new DrawingBlock(new Position(14, 6), 5, 1, lettersColor, null, ' '),
             new DrawingBlock(new Position(14, 10), 5, 1, lettersColor, null, ' '),
@@ -78,13 +100,13 @@ public class MenuView {
             new DrawingBlock(new Position(73, 7), 1, 8, lettersColor, null, ' '),
             //N
             new DrawingBlock(new Position(76, 6), 1, 9, lettersColor, null, ' '),
-            new DrawingBlock(new Position(79, 6), 1, 7, lettersColor, null, ' '),
-            new DrawingBlock(new Position(82, 7), 1, 9, lettersColor, null, ' '),
-            new DrawingBlock(new Position(77, 7), 2, 1, lettersColor, null, ' '),
-            new DrawingBlock(new Position(80, 8), 2, 1, lettersColor, null, ' ')
+            new DrawingBlock(new Position(79, 7), 1, 7, lettersColor, null, ' '),
+            new DrawingBlock(new Position(82, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(77, 6), 2, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(80, 14), 2, 1, lettersColor, null, ' ')
     });
 
-    private DrawingImage playText = new DrawingImage(new DrawingBlock[] {
+    private final DrawingImage playText = new DrawingImage(new DrawingBlock[] {
             //P
             new DrawingBlock(new Position(30, 18), 5, 1, lettersColor, null, ' '),
             new DrawingBlock(new Position(30, 23), 5, 1, lettersColor, null, ' '),
@@ -105,6 +127,43 @@ public class MenuView {
             new DrawingBlock(new Position(51, 24), 1, 3, lettersColor, null, ' '),
             new DrawingBlock(new Position(48, 18), 1, 1, lettersColor, null, ' '),
             new DrawingBlock(new Position(54, 18), 1, 1, lettersColor, null, ' ')
+    });
+
+    private final DrawingImage optionsText = new DrawingImage(new DrawingBlock[] {
+            //O
+            new DrawingBlock(new Position(31, 30), 4, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(30, 31), 1, 7, lettersColor, null, ' '),
+            new DrawingBlock(new Position(31, 38), 4, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(35, 31), 1, 7, lettersColor, null, ' '),
+            //P
+            new DrawingBlock(new Position(37, 30), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(38, 31), 1, 8, lettersColor, null, ' '),
+            new DrawingBlock(new Position(42, 31), 1, 4, lettersColor, null, ' '),
+            new DrawingBlock(new Position(37, 35), 5, 1, lettersColor, null, ' '),
+            //T
+            new DrawingBlock(new Position(44, 30), 7, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(47, 31), 1, 8, lettersColor, null, ' '),
+            //I
+            new DrawingBlock(new Position(52, 30), 7, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(55, 31), 1, 7, lettersColor, null, ' '),
+            new DrawingBlock(new Position(52, 38), 7, 1, lettersColor, null, ' '),
+            //O
+            new DrawingBlock(new Position(61, 30), 4, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(60, 31), 1, 7, lettersColor, null, ' '),
+            new DrawingBlock(new Position(61, 38), 4, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(65, 31), 1, 7, lettersColor, null, ' '),
+            //N
+            new DrawingBlock(new Position(67, 30), 3, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(67, 31), 1, 8, lettersColor, null, ' '),
+            new DrawingBlock(new Position(70, 31), 1, 7, lettersColor, null, ' '),
+            new DrawingBlock(new Position(71, 38), 3, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(74, 30), 1, 8, lettersColor, null, ' '),
+            //S
+            new DrawingBlock(new Position(77, 30), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(76, 31), 1, 3, lettersColor, null, ' '),
+            new DrawingBlock(new Position(77, 34), 4, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(81, 35), 1, 3, lettersColor, null, ' '),
+            new DrawingBlock(new Position(76, 38), 5, 1, lettersColor, null, ' ')
     });
 
     MenuView(int width_, int height_, MenuModel model_){
@@ -291,10 +350,46 @@ public class MenuView {
             graphics_.fillRectangle(new TerminalPosition(52, 24- option_ + 1), new TerminalSize(1, 3), ' ');
             graphics_.fillRectangle(new TerminalPosition(49, 18- option_ + 1), new TerminalSize(1, 1), ' ');
             graphics_.fillRectangle(new TerminalPosition(55, 18- option_ + 1), new TerminalSize(1, 1), ' ');
+            //OPTIONS
+            //O
+            graphics_.fillRectangle(new TerminalPosition(32, 30- option_ + 2), new TerminalSize( 4, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(31, 31- option_ + 2), new TerminalSize( 1, 7), ' ');
+            graphics_.fillRectangle(new TerminalPosition(32, 38- option_ + 2), new TerminalSize( 4, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(36, 31- option_ + 2), new TerminalSize( 1, 7), ' ');
+            //P
+            graphics_.fillRectangle(new TerminalPosition(38, 30- option_ + 2), new TerminalSize( 5, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(39, 31- option_ + 2), new TerminalSize( 1, 8), ' ');
+            graphics_.fillRectangle(new TerminalPosition(43, 31- option_ + 2), new TerminalSize( 1, 4), ' ');
+            graphics_.fillRectangle(new TerminalPosition(38, 35- option_ + 2), new TerminalSize( 5, 1), ' ');
+            //T
+            graphics_.fillRectangle(new TerminalPosition(45, 30- option_ + 2), new TerminalSize( 7, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(48, 31- option_ + 2), new TerminalSize( 1, 8), ' ');
+            //I
+            graphics_.fillRectangle(new TerminalPosition(53, 30- option_ + 2), new TerminalSize( 7, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(56, 31- option_ + 2), new TerminalSize( 1, 7), ' ');
+            graphics_.fillRectangle(new TerminalPosition(53, 38- option_ + 2), new TerminalSize( 7, 1), ' ');
+            //O
+            graphics_.fillRectangle(new TerminalPosition(62, 30- option_ + 2), new TerminalSize( 4, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(61, 31- option_ + 2), new TerminalSize( 1, 7), ' ');
+            graphics_.fillRectangle(new TerminalPosition(62, 38- option_ + 2), new TerminalSize( 4, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(66, 31- option_ + 2), new TerminalSize( 1, 7), ' ');
+            //N
+            graphics_.fillRectangle(new TerminalPosition(68, 30- option_ + 2), new TerminalSize( 3, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(68, 31- option_ + 2), new TerminalSize( 1, 8), ' ');
+            graphics_.fillRectangle(new TerminalPosition(71, 31- option_ + 2), new TerminalSize( 1, 7), ' ');
+            graphics_.fillRectangle(new TerminalPosition(72, 38- option_ + 2), new TerminalSize( 3, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(75, 30- option_ + 2), new TerminalSize( 1, 8), ' ');
+            //S
+            graphics_.fillRectangle(new TerminalPosition(78, 30- option_ + 2), new TerminalSize( 5, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(77, 31- option_ + 2), new TerminalSize( 1, 3), ' ');
+            graphics_.fillRectangle(new TerminalPosition(78, 34- option_ + 2), new TerminalSize( 4, 1), ' ');
+            graphics_.fillRectangle(new TerminalPosition(82, 35- option_ + 2), new TerminalSize( 1, 3), ' ');
+            graphics_.fillRectangle(new TerminalPosition(77, 38- option_ + 2), new TerminalSize( 5, 1), ' ');
         }
         //DRAWING BOMBERMAN
         bombermanText.draw(graphics_, new Position(0,0), false);
         playText.draw(graphics_, new Position(0,0), false);
+        optionsText.draw(graphics_, new Position(0,0), false);
 
         drawPlayerInMenu(graphics_, players_[0], 0);
         drawPlayerInMenu(graphics_, players_[1], 1);
@@ -310,6 +405,9 @@ public class MenuView {
             }
             drawBomb(graphics_, option_);
         }
+        String bombWickColor = "#909090";
+        String fireRedColor = "#ff2706";
+        String fireYellowColor = "#ffee00";
         if (!optionSelected) {
             graphics_.setBackgroundColor(TextColor.Factory.fromString("#000000"));
             graphics_.fillRectangle(new TerminalPosition(22, option_ * optionSize + bombRow - 1), new TerminalSize(1, 1), ' ');
@@ -412,6 +510,49 @@ public class MenuView {
                 model.setMenuState();
             }
         }
+    }
+
+
+    public void drawOptions(TextGraphics graphics_, AudioSettings settings_, AudioPlayer player_) {
+        graphics_.setBackgroundColor(TextColor.Factory.fromString(menuBackgroundColor));
+        graphics_.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        optionsText.draw(graphics_, new Position(-3, -8), false);
+        settings_.drawAudioSlider(graphics_,new Position(66, 26), player_, menuBackgroundColor);
+        //Rules
+        new DrawingText(new Position(10, 20), "Welcome to Bomberman", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(4, 22), "In this adapted version of the original game you can", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 23), "go back and blast your friends while having a laugh", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(4, 24), "The rules are simple", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 25), "last to stay alive in the game against a maximum", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 26), "of three players while picking up a various range", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 27), "of power ups scattered along the walls wins.", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 28), "Be careful where you put your bombs though...", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(4, 29), "they certainly hurt for everybody", null, "#500000").draw(graphics_);
+        new DrawingText(new Position(2, 31), "List of power ups", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 32), "/ increases your concurrent bomb limit", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 33), ": increases the explosion range by one", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 34), "- allows you to push bombs", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 35), "'", null, "#F0F000").draw(graphics_);
+        new DrawingText(new Position(4, 35), "gives you a shield that protects you once", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 36), "\"", null, "#F00000").draw(graphics_);
+        new DrawingText(new Position(4, 36), "gives you an additional life", null, "#000000").draw(graphics_);
+        invincibleAnim.draw(graphics_, new Position(0,0), false);
+        new DrawingText(new Position(4, 37), "you become invincible", null, "#000000").draw(graphics_);
+        /*
+                                        Welcome to Bomberman!
+            With this adapted version of the original game you can go back and blast your friends while having a laugh!
+            Rules are simple: last to stay alive in the game against a maximum of three players while picking up a various
+            range of powerups scattered along the walls wins. Be careful where you put your bombs though... they certainly
+            hurt for everybody!
+
+            List of powerups:
+            * - adds a bomb to your arsenal so you can put more at once
+            * - increases the bomb´s explosion range by one
+            * - allows you to push the bomb in the direction you are facing
+            * - gives you a shield that protects you from one explosion
+            * - gives you an additional life
+            * - you become invincible
+         */
     }
 
     public void drawDebugDeltaTime(TextGraphics graphics_, int deltaTime) {

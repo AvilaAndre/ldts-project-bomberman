@@ -36,7 +36,6 @@ public class GameController {
                 return;
             if (key.getKeyType() == KeyType.Escape) {
                 paused = false;
-                System.out.println("UNPAUSE");
             }
             return;
         }
@@ -44,7 +43,6 @@ public class GameController {
         switch (key.getKeyType()) {
             case Escape:
                 paused = true;
-                System.out.println("PAUSE");
                 break;
             case ArrowUp:
                 model.playerUp(1);
