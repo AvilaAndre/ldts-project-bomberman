@@ -33,7 +33,7 @@ public class AudioPlayer {
         this.powerupSound= loadMusic("/soundfx/powerup2.wav");
         this.shieldSound= loadMusic("/soundfx/shield.wav");
         setMusicVolume(0.5f);
-        setFxVolume(0.8f);
+        setFxVolume(0.8f, false);
     }
 
     public static AudioPlayer getInstance() {
@@ -117,12 +117,24 @@ public class AudioPlayer {
     }
 
     public void setMusicVolume(float volume_) {
+        if (volume_ > 1.0f)
+            volume_ = 1.0f;
+        else if (volume_ < 0.0f)
+            volume_ = 0.0f;
         musicVolume  = volume_;
         setClipVolume(menuMusic, musicVolume);
         setClipVolume(gameMusic, musicVolume);
     }
 
-    public void setFxVolume(float volume_) {
+    public float getMusicVolume() {
+        return this.musicVolume;
+    }
+
+    public void setFxVolume(float volume_, boolean ping_) {
+        if (volume_ > 1.0f)
+            volume_ = 1.0f;
+        else if (volume_ < 0.0f)
+            volume_ = 0.0f;
         fxVolume  = volume_;
         setClipVolume(explosionSound1, fxVolume);
         setClipVolume(explosionSound2, fxVolume);
@@ -130,6 +142,12 @@ public class AudioPlayer {
         setClipVolume(loseSound, fxVolume);
         setClipVolume(powerupSound, fxVolume);
         setClipVolume(shieldSound, fxVolume);
+        if (!powerupSound.isActive() && ping_)
+            playPowerUpSound();
+    }
+
+    public float getFxVolume() {
+        return this.fxVolume;
     }
 
     private void setClipVolume(Clip clip_, float volume_) {

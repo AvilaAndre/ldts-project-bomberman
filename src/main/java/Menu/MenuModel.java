@@ -2,19 +2,19 @@ package Menu;
 
 import Audio.AudioPlayer;
 import Game.GameController;
-import Settings.SettingsController;
+import AudioSettings.AudioSettings;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.util.Objects;
 
 public class MenuModel {
-    private int width;
-    private int height;
-    private Screen screen;
+    private final int width;
+    private final int height;
+    private final Screen screen;
 
-    public enum STATE {MAIN_MENU, GAME, SETTINGS}
+    public enum STATE {MAIN_MENU, GAME, OPTIONS_MENU}
     private STATE state = STATE.MAIN_MENU;
-    AudioPlayer MenuPlayer = new AudioPlayer();
+    public AudioPlayer MenuPlayer = AudioPlayer.getInstance();
 
     //players
     private String playerOne;
@@ -26,7 +26,7 @@ public class MenuModel {
 
     //game
     public GameController game;
-    public SettingsController settings;
+    public AudioSettings settings = new AudioSettings();
 
 
     //MAIN_MENU
@@ -60,8 +60,7 @@ public class MenuModel {
             MenuPlayer.stopMenuMusic();
         }
         else if (mainMenuOpt == 2){
-            this.state = STATE.SETTINGS;
-            this.settings = new SettingsController(this.screen, this.width, this.height);
+            this.state = STATE.OPTIONS_MENU;
         }
     }
 
