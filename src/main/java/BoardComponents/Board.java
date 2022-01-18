@@ -259,15 +259,15 @@ public class Board {
         int power;
         if (choice < 150)
             power = -1;
-        else if (choice < 177)
+        else if (choice < 179)
             power = 0;
-        else if (choice < 199)
+        else if (choice < 201)
             power = 1;
-        else if (choice < 217)
+        else if (choice < 219)
             power = 4;
-        else if (choice < 232)
+        else if (choice < 234)
             power = 3;
-        else if (choice < 242)
+        else if (choice < 244)
             power = 2;
         else power = 5;
         if (power > -1)
