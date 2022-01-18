@@ -18,6 +18,95 @@ public class GameView {
     int height;
     ArrayList<DrawingAnimation> eliminationsPanel = new ArrayList<>();
     DrawingImage viewBackground;
+
+    private final DrawingAnimation pausedLetters = new DrawingAnimation(
+            new DrawingImage[] {
+                    new DrawingImage(
+                            new DrawingBlock[] {
+                                    new DrawingBlock(new Position(22, 7), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(22, 8), 8, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(23, 10), 3, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(27, 10), 3, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(22, 12), 8, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(22, 14), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(23, 15), 3, 3, "#20209c", null, ' '),
+                                    //innerP
+                                    new DrawingBlock(new Position(23, 8), 5, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(23, 13), 5, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(24, 9), 1, 8, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(28, 9), 1, 4, "#1c5888", null, ' '),
+                                    //A
+                                    new DrawingBlock(new Position(33, 7), 5, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(32, 8), 7, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(32, 10), 3, 8, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(36, 10), 3, 8, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(31, 12), 9, 3, "#20209c", null, ' '),
+                                    //innerA
+                                    new DrawingBlock(new Position(34, 8), 3, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(33, 9), 1, 8, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(37, 9), 1, 8, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(32, 13), 7, 1, "#1c5888", null, ' '),
+                                    //U
+                                    new DrawingBlock(new Position(41, 7), 3, 8, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(46, 7), 3, 8, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(41, 15), 8, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(42, 17), 6, 1, "#20209c", null, ' '),
+                                    //innerU
+                                    new DrawingBlock(new Position(42, 8), 1, 8, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(47, 8), 1, 8, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(43, 16), 4, 1, "#1c5888", null, ' '),
+                                    //S
+                                    new DrawingBlock(new Position(51, 7), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(50, 8), 8, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(50, 10), 3, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(50, 11), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(50, 12), 8, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(51, 13), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(55, 14), 3, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(50, 15), 8, 2, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(50, 17), 7, 1, "#20209c", null, ' '),
+                                    //innerS
+                                    new DrawingBlock(new Position(52, 8), 5, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(51, 9), 1, 3, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(52, 12), 4, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(56, 13), 1, 4, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(51, 16), 5, 1, "#1c5888", null, ' '),
+                                    //E
+                                    new DrawingBlock(new Position(59, 7), 8, 3, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(60, 10), 3, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(59, 11), 7, 3, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(60, 14), 3, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(59, 15), 8, 3, "#20209c", null, ' '),
+                                    //innerE
+                                    new DrawingBlock(new Position(60, 8), 6, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(60, 12), 5, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(60, 16), 6, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(61, 9), 1, 7, "#1c5888", null, ' '),
+                                    //D
+                                    new DrawingBlock(new Position(68, 7), 6, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(68, 8), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(68, 9), 8, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(69, 10), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(69, 11), 3, 3, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(73, 11), 3, 3, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(69, 14), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(68, 15), 8, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(68, 16), 7, 1, "#20209c", null, ' '),
+                                    new DrawingBlock(new Position(68, 17), 6, 1, "#20209c", null, ' '),
+                                    //innerD
+                                    new DrawingBlock(new Position(69, 8), 4, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(69, 16), 4, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(70, 9), 1, 7, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(73, 9), 1, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(73, 15), 1, 1, "#1c5888", null, ' '),
+                                    new DrawingBlock(new Position(74, 10), 1, 5, "#1c5888", null, ' ')
+                            }
+                    ),
+                    new DrawingImage(
+                            new DrawingBlock[] {}
+                    )
+            }, new int[] {30, 20}, false);
+
     DrawingImage boardFrame = new DrawingImage(new DrawingBlock[] {
             new DrawingBlock(new Position(21, 2), 1, 48, "#000000", null, ' '),
             new DrawingBlock(new Position(76, 2), 1, 48, "#000000", null, ' '),
@@ -252,10 +341,10 @@ public class GameView {
                     new DrawingBlock(new Position(x + 2, y + 6), 1, 1, "#FFFFFF", "#F08800", ':'),
                     new DrawingBlock(new Position(x + 2, y + 7), 1, 1, "#FFFFFF", "#444444", '\\'),
             }).draw(graphics_, new Position(0, 0), false);
-            new DrawingText(new Position(x + ((player_.getLives() > 10)? 17 : 18), y + 4), String.valueOf(player_.getLives()), "#FFFFFF", "#000000").draw(graphics_);
-            new DrawingText(new Position(x + ((player_.getBombLimit() > 10)? 17 : 18), y + 5), String.valueOf(player_.getBombLimit()), "#FFFFFF", "#000000").draw(graphics_);
-            new DrawingText(new Position(x + ((player_.getBombRadius() > 10)? 17 : 18), y + 6), String.valueOf(player_.getBombRadius()), "#FFFFFF", "#000000").draw(graphics_);
-            new DrawingText(new Position(x + ((player_.getEliminations() > 10)? 17 : 18), y + 7), String.valueOf(player_.getEliminations()), "#FFFFFF", "#000000").draw(graphics_);
+            new DrawingText(new Position(x + ((player_.getLives() > 9)? 17 : 18), y + 4), String.valueOf(player_.getLives()), "#FFFFFF", "#000000").draw(graphics_);
+            new DrawingText(new Position(x + ((player_.getBombLimit() > 9)? 17 : 18), y + 5), String.valueOf(player_.getBombLimit()), "#FFFFFF", "#000000").draw(graphics_);
+            new DrawingText(new Position(x + ((player_.getBombRadius() > 9)? 17 : 18), y + 6), String.valueOf(player_.getBombRadius()), "#FFFFFF", "#000000").draw(graphics_);
+            new DrawingText(new Position(x + ((player_.getEliminations() > 9)? 17 : 18), y + 7), String.valueOf(player_.getEliminations()), "#FFFFFF", "#000000").draw(graphics_);
             if (player_.getShield())
                 new DrawingBlock(new Position(x + (x < 50? 14 : 4) , y + 10), 1, 1, "#FFFFFF", "#F0F000", '\'').draw(graphics_, new Position(0,0), false);
             if (player_.getPushTheBomb())
@@ -276,7 +365,7 @@ public class GameView {
         viewBackground = new DrawingImage(new DrawingBlock[] {new DrawingBlock(new Position(0,0), width, height, "#ffffff", null, ' ')});
     }
 
-    public void draw(TextGraphics graphics_, ArrayList<BoardElement> drawQueue, Bomberman playerOne_, Bomberman playerTwo_, Bomberman playerThree_, Bomberman playerFour_, ArrayList<Pair<Bomberman, Bomberman>> eliminationsQueue) {
+    public void draw(TextGraphics graphics_, ArrayList<BoardElement> drawQueue, Bomberman playerOne_, Bomberman playerTwo_, Bomberman playerThree_, Bomberman playerFour_, ArrayList<Pair<Bomberman, Bomberman>> eliminationsQueue, boolean paused) {
         if (eliminationsQueue.size() > 0)
             for (Pair<Bomberman, Bomberman> pair : eliminationsQueue)
                 eliminationsPanel.add(newEliminationPanel(pair.getKey(), pair.getValue()));
@@ -306,7 +395,10 @@ public class GameView {
         if (playerFour_.isAlive())
             playerFour_.draw(graphics_);
 
-        if (eliminationsPanel.size() > 0)
+        if (eliminationsPanel.size() > 0 && !paused)
             eliminationsPanel.get(0).draw(graphics_, new Position(0,0), false);
+
+        if (paused)
+            pausedLetters.draw(graphics_, new Position(0,0), false);
     }
 }
