@@ -48,16 +48,38 @@ public class MenuController {
                 model.game.draw(graphics);
                 break;
             }
+            case END:
+                model.game.draw(graphics);
+                model.game.drawWinner(graphics);
+                break;
         }
         view.drawDebugDeltaTime(graphics, framesPerSecond);
         screen.refresh();
     }
 
     private boolean getInput() throws IOException {
-        if (model.getState() == MenuModel.STATE.GAME) {
+        if(model.getState() == MenuModel.STATE.END){
+            KeyStroke key = screen.pollInput();
+            if (key == null) return true;
+            if (key.getKeyType() == KeyType.Character) {
+                System.out.println(key.getCharacter());
+            }
+            if (key.getKeyType() == KeyType.Enter){
+                model.setState(MenuModel.STATE.MAIN_MENU);
+
+            }
+            return true;
+        }
+
+        if (model.getState() == MenuModel.STATE.GAME && model.game.getPlayersAlive() > 1) {
             model.game.getInput();
             return true;
         }
+        else if (model.getState() == MenuModel.STATE.GAME && model.game.getPlayersAlive() <= 1){
+            model.setState(MenuModel.STATE.END);
+            return true;
+        }
+
         KeyStroke key = screen.pollInput();
         if (key == null) return true;
         if (key.getKeyType() == KeyType.Character) {
