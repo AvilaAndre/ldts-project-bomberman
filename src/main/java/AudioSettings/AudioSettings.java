@@ -30,10 +30,12 @@ public class AudioSettings {
             audio.setMusicVolume(audio.getMusicVolume() - 0.05f);
     }
 
-    public void getInput(Screen screen, AudioPlayer audioPlayer, MenuModel model) throws IOException {
+    public boolean getInput(Screen screen, AudioPlayer audioPlayer, MenuModel model) throws IOException {
         KeyStroke key = screen.pollInput();
-        if (key == null) return;
+        if (key == null) return true;
         switch (key.getKeyType()) {
+            case EOF:
+                return false;
             case Escape:
                 if (model != null)
                     model.setState(MenuModel.STATE.MAIN_MENU);
@@ -48,6 +50,7 @@ public class AudioSettings {
                 sliderDown(audioPlayer);
                 break;
         }
+        return true;
     }
 
     public void changeSlider() {

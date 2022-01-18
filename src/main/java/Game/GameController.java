@@ -23,23 +23,28 @@ public class GameController {
         audio.startGameMusic();
     }
 
-    public void getInput() throws IOException {
-        processInput(screen.pollInput());
-        processInput(screen.pollInput());
-        processInput(screen.pollInput());
-        processInput(screen.pollInput());
+    public boolean getInput() throws IOException {
+        if (!processInput(screen.pollInput()))
+            return false;
+        if (!processInput(screen.pollInput()))
+            return false;
+        if (!processInput(screen.pollInput()))
+            return false;
+        return processInput(screen.pollInput());
     }
 
-    private void processInput(KeyStroke key) {
+    private boolean processInput(KeyStroke key) {
         if (paused) {
             if (key == null)
-                return;
+                return true;
+            if (key.getKeyType() == KeyType.EOF)
+                return false;
             if (key.getKeyType() == KeyType.Escape) {
                 paused = false;
             }
-            return;
+            return true;
         }
-        if (key == null) return;
+        if (key == null) return true;
         switch (key.getKeyType()) {
             case Escape:
                 paused = true;
@@ -60,6 +65,7 @@ public class GameController {
                 model.playerAction(1);
                 break;
             case EOF:
+                return false;
             case Character: {
                 switch (key.getCharacter()) {
                     case 'W':
@@ -128,6 +134,7 @@ public class GameController {
             default:
                 System.out.println("Not an option");
         }
+        return true;
     }
 
     public void draw(TextGraphics graphics) {

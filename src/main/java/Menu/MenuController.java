@@ -64,27 +64,23 @@ public class MenuController {
         if(model.getState() == MenuModel.STATE.END){
             KeyStroke key = screen.pollInput();
             if (key == null) return true;
-            if (key.getKeyType() == KeyType.Character) {
-                System.out.println(key.getCharacter());
-            }
+            if (key.getKeyType() == KeyType.EOF)
+                return false;
             if (key.getKeyType() == KeyType.Enter){
                 model.setState(MenuModel.STATE.MAIN_MENU);
-
             }
             return true;
         }
 
         if (model.getState() == MenuModel.STATE.GAME && model.game.getPlayersAlive() > 1) {
-            model.game.getInput();
-            return true;
+            return model.game.getInput();
         }
         else if (model.getState() == MenuModel.STATE.GAME && model.game.getPlayersAlive() <= 1){
             model.setState(MenuModel.STATE.END);
             return true;
         }
         else if (model.getState() == MenuModel.STATE.OPTIONS_MENU) {
-            model.settings.getInput(screen, model.MenuPlayer, this.model);
-            return true;
+            return model.settings.getInput(screen, model.MenuPlayer, this.model);
         }
         KeyStroke key = screen.pollInput();
         if (key == null) return true;
@@ -169,5 +165,7 @@ public class MenuController {
                 Thread.sleep(timePerFrame - (endTime - startTime));
             //Input
         } while (getInput());
+        model.MenuPlayer.stopMenuMusic();
+        //model.MenuPlayer.playHurtSound();
     }
 }
