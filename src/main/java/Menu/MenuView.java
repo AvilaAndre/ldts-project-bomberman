@@ -27,22 +27,22 @@ public class MenuView {
 
     private final DrawingAnimation invincibleAnim = new DrawingAnimation(new DrawingImage[]{
             new DrawingImage(new DrawingBlock[]{
-                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#F00000", '=')
+                    new DrawingBlock(new Position(2, 39), 1, 1, menuBackgroundColor, "#F00000", '=')
             }),
             new DrawingImage(new DrawingBlock[]{
-                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#F0F000", '='),
+                    new DrawingBlock(new Position(2, 39), 1, 1, menuBackgroundColor, "#F0F000", '='),
             }),
             new DrawingImage(new DrawingBlock[]{
-                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#00F000", '='),
+                    new DrawingBlock(new Position(2, 39), 1, 1, menuBackgroundColor, "#00F000", '='),
             }),
             new DrawingImage(new DrawingBlock[]{
-                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#00F0F0", '='),
+                    new DrawingBlock(new Position(2, 39), 1, 1, menuBackgroundColor, "#00F0F0", '='),
             }),
             new DrawingImage(new DrawingBlock[]{
-                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#00000F", '='),
+                    new DrawingBlock(new Position(2, 39), 1, 1, menuBackgroundColor, "#00000F", '='),
             }),
             new DrawingImage(new DrawingBlock[]{
-                    new DrawingBlock(new Position(2, 37), 1, 1, "#FFFFFF", "#F000F0", '='),
+                    new DrawingBlock(new Position(2, 39), 1, 1, menuBackgroundColor, "#F000F0", '='),
             })
     }, new int[]{2, 2}, false);
 
@@ -519,40 +519,25 @@ public class MenuView {
         optionsText.draw(graphics_, new Position(-3, -8), false);
         settings_.drawAudioSlider(graphics_,new Position(66, 26), player_, menuBackgroundColor);
         //Rules
-        new DrawingText(new Position(10, 20), "Welcome to Bomberman", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(4, 22), "In this adapted version of the original game you can", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 23), "go back and blast your friends while having a laugh", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(4, 24), "The rules are simple", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 25), "last to stay alive in the game against a maximum", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 26), "of three players while picking up a various range", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 27), "of power ups scattered along the walls wins.", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 28), "Be careful where you put your bombs though...", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(4, 29), "they certainly hurt for everybody", null, "#500000").draw(graphics_);
-        new DrawingText(new Position(2, 31), "List of power ups", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 32), "/ increases your concurrent bomb limit", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 33), ": increases the explosion range by one", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 34), "- allows you to push bombs", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 35), "'", null, "#F0F000").draw(graphics_);
-        new DrawingText(new Position(4, 35), "gives you a shield that protects you once", null, "#000000").draw(graphics_);
-        new DrawingText(new Position(2, 36), "\"", null, "#F00000").draw(graphics_);
-        new DrawingText(new Position(4, 36), "gives you an additional life", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(10, 22), "Welcome to Bomberman", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(4, 24), "In this adapted version of the original game you can", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 25), "go back and blast your friends while having a laugh", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(4, 26), "The rules are simple", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 27), "last to stay alive in the game against a maximum", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 28), "of three players while picking up a various range", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 29), "of power ups scattered along the walls wins.", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 30), "Be careful where you put your bombs though...", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(4, 31), "they certainly hurt for everybody", null, "#500000").draw(graphics_);
+        new DrawingText(new Position(2, 33), "List of power ups", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 34), "/ increases your concurrent bomb limit", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 35), ": increases the explosion range by one", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 36), "- allows you to push bombs", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 37), "'", null, "#F0F000").draw(graphics_);
+        new DrawingText(new Position(4, 37), "gives you a shield that protects you once", null, "#000000").draw(graphics_);
+        new DrawingText(new Position(2, 38), "\"", null, "#F00000").draw(graphics_);
+        new DrawingText(new Position(4, 38), "gives you an additional life", null, "#000000").draw(graphics_);
         invincibleAnim.draw(graphics_, new Position(0,0), false);
-        new DrawingText(new Position(4, 37), "you become invincible", null, "#000000").draw(graphics_);
-        /*
-                                        Welcome to Bomberman!
-            With this adapted version of the original game you can go back and blast your friends while having a laugh!
-            Rules are simple: last to stay alive in the game against a maximum of three players while picking up a various
-            range of powerups scattered along the walls wins. Be careful where you put your bombs though... they certainly
-            hurt for everybody!
-
-            List of powerups:
-            * - adds a bomb to your arsenal so you can put more at once
-            * - increases the bomb´s explosion range by one
-            * - allows you to push the bomb in the direction you are facing
-            * - gives you a shield that protects you from one explosion
-            * - gives you an additional life
-            * - you become invincible
-         */
+        new DrawingText(new Position(4, 39), "you become invincible", null, "#000000").draw(graphics_);
     }
 
     public void drawDebugDeltaTime(TextGraphics graphics_, int deltaTime) {

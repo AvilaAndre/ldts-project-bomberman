@@ -36,7 +36,7 @@ public class AudioSettings {
         switch (key.getKeyType()) {
             case Escape:
                 if (model != null)
-                    model.setMenuState();
+                    model.setState(MenuModel.STATE.MAIN_MENU);
             case ArrowDown:
             case ArrowUp:
                 changeSlider();
@@ -61,7 +61,7 @@ public class AudioSettings {
     public void drawAudioSlider(TextGraphics graphics_, Position pos_, AudioPlayer audio_, String backgroundColor) {
         TextColor ogColor = graphics_.getBackgroundColor();
         graphics_.setBackgroundColor(TextColor.Factory.fromString(backgroundColor));
-        graphics_.fillRectangle(new TerminalPosition(pos_.getX() - 10, pos_.getY() - 5), new TerminalSize(39, 24), ' ');
+        graphics_.fillRectangle(new TerminalPosition(pos_.getX() - 10, pos_.getY() - 5), new TerminalSize(39, 26), ' ');
         graphics_.setBackgroundColor(TextColor.Factory.fromString("#909090"));
         //musicSlider
         graphics_.fillRectangle(new TerminalPosition(pos_.getX(), pos_.getY()), new TerminalSize(22, 2), ' ');
@@ -88,6 +88,7 @@ public class AudioSettings {
         new DrawingText(new Position(pos_.getX()-4, pos_.getY()+15), "Press < and > to change volume", backgroundColor, "#000000").draw(graphics_);
         new DrawingText(new Position(pos_.getX()-4, pos_.getY()+16), "Press v and ^ to switch between", backgroundColor, "#000000").draw(graphics_);
         new DrawingText(new Position(pos_.getX(), pos_.getY()+17),"music and sound effects", backgroundColor, "#000000").draw(graphics_);
+        new DrawingText(new Position(pos_.getX()-4, pos_.getY()+19),"Press escape to exit this menu", backgroundColor, "#000000").draw(graphics_);
 
         graphics_.setBackgroundColor(ogColor);
     }
