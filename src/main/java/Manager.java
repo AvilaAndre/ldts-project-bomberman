@@ -42,7 +42,6 @@ public class Manager {
 
     }
 
-
     void setUp() throws IOException, URISyntaxException, FontFormatException {
         Font font =  Font.createFont(Font.TRUETYPE_FONT,
                 new File(getClass().getClassLoader().getResource("GameFont.ttf").toURI()));
@@ -73,8 +72,7 @@ public class Manager {
         this.screen = new TerminalScreen(terminal);
     }
 
-
-    void start() throws IOException, InterruptedException {
+    public void start() throws IOException, InterruptedException {
 
         screen.setCursorPosition(null);
         screen.startScreen();
@@ -83,6 +81,7 @@ public class Manager {
         screen.refresh();
 
         STATE = MenuState;
+
         while (true) {
             long timePerFrame = 1000 / framesPerSecond;
             long startTime = 0;
@@ -99,4 +98,6 @@ public class Manager {
         }
 
         screen.stopScreen();}
+
+    //public
 }
