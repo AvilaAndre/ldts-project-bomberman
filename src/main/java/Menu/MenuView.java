@@ -1,5 +1,9 @@
 package Menu;
 
+import DrawingMethods.DrawingAnimation;
+import DrawingMethods.DrawingBlock;
+import DrawingMethods.DrawingImage;
+import Structures.Position;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -19,6 +23,89 @@ public class MenuView {
     private int mainMenuBomb = 0;
     private int bombRow = 9;
     private int optionSize = 12;
+
+
+    private DrawingImage bombermanText = new DrawingImage(new DrawingBlock[] {
+            //B
+            new DrawingBlock(new Position(14, 6), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(14, 10), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(14, 14), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(15, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(19, 7), 1, 3, lettersColor, null, ' '),
+            new DrawingBlock(new Position(19, 11), 1, 3, lettersColor, null, ' '),
+            //M
+            new DrawingBlock(new Position(30, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(36, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(31, 7), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(35, 7), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(32, 8), 1, 2, lettersColor, null, ' '),
+            new DrawingBlock(new Position(34, 8), 1, 2, lettersColor, null, ' '),
+            new DrawingBlock(new Position(33, 10), 1, 2, lettersColor, null, ' '),
+            //B
+            new DrawingBlock(new Position(38, 6), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(38, 10), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(38, 14), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(39, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(43, 7), 1, 3, lettersColor, null, ' '),
+            new DrawingBlock(new Position(43, 11), 1, 3, lettersColor, null, ' '),
+            //E
+            new DrawingBlock(new Position(45, 6), 6, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(45, 10), 6, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(45, 14), 6, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(46, 7), 1, 7, lettersColor, null, ' '),
+            //R
+            new DrawingBlock(new Position(52, 6), 6, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(52, 10), 6, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(53, 7), 1, 8, lettersColor, null, ' '),
+            new DrawingBlock(new Position(58, 7), 1, 3, lettersColor, null, ' '),
+            new DrawingBlock(new Position(54, 10), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(55, 11), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(56, 12), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(57, 13), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(58, 14), 1, 1, lettersColor, null, ' '),
+            //M
+            new DrawingBlock(new Position(60, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(66, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(61, 7), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(65, 7), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(62, 8), 1, 2, lettersColor, null, ' '),
+            new DrawingBlock(new Position(64, 8), 1, 2, lettersColor, null, ' '),
+            new DrawingBlock(new Position(63, 10), 1, 2, lettersColor, null, ' '),
+            //A
+            new DrawingBlock(new Position(68, 10), 7, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(70, 6), 3, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(69, 7), 1, 8, lettersColor, null, ' '),
+            new DrawingBlock(new Position(73, 7), 1, 8, lettersColor, null, ' '),
+            //N
+            new DrawingBlock(new Position(76, 6), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(79, 6), 1, 7, lettersColor, null, ' '),
+            new DrawingBlock(new Position(82, 7), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(77, 7), 2, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(80, 8), 2, 1, lettersColor, null, ' ')
+    });
+
+    private DrawingImage playText = new DrawingImage(new DrawingBlock[] {
+            //P
+            new DrawingBlock(new Position(30, 18), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(30, 23), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(31, 18), 1, 9, lettersColor, null, ' '),
+            new DrawingBlock(new Position(35, 19), 1, 4, lettersColor, null, ' '),
+            //L
+            new DrawingBlock(new Position(36, 26), 5, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(37, 18), 1, 8, lettersColor, null, ' '),
+            //A
+            new DrawingBlock(new Position(41, 23), 7, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(43, 18), 3, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(42, 19), 1, 8, lettersColor, null, ' '),
+            new DrawingBlock(new Position(46, 19), 1, 8, lettersColor, null, ' '),
+            //Y
+            new DrawingBlock(new Position(49, 19), 1, 4, lettersColor, null, ' '),
+            new DrawingBlock(new Position(53, 19), 1, 4, lettersColor, null, ' '),
+            new DrawingBlock(new Position(50, 23), 3, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(51, 24), 1, 3, lettersColor, null, ' '),
+            new DrawingBlock(new Position(48, 18), 1, 1, lettersColor, null, ' '),
+            new DrawingBlock(new Position(54, 18), 1, 1, lettersColor, null, ' ')
+    });
 
     MenuView(int width_, int height_, MenuModel model_){
         this.width = width_;
@@ -206,91 +293,13 @@ public class MenuView {
             graphics_.fillRectangle(new TerminalPosition(55, 18- option_ + 1), new TerminalSize(1, 1), ' ');
         }
         //DRAWING BOMBERMAN
-        graphics_.setBackgroundColor(TextColor.Factory.fromString(lettersColor));
-        // B
-        graphics_.fillRectangle(new TerminalPosition(14, 6), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(14, 10), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(14, 14), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(15, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(19, 7), new TerminalSize(1, 3), ' ');
-        graphics_.fillRectangle(new TerminalPosition(19, 11), new TerminalSize(1, 3), ' ');
-        // M
-        graphics_.fillRectangle(new TerminalPosition(30, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(36, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(31, 7), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(35, 7), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(32, 8), new TerminalSize(1, 2), ' ');
-        graphics_.fillRectangle(new TerminalPosition(34, 8), new TerminalSize(1, 2), ' ');
-        graphics_.fillRectangle(new TerminalPosition(33, 10), new TerminalSize(1, 2), ' ');
-        // B
-        graphics_.fillRectangle(new TerminalPosition(38, 6), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(38, 10), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(38, 14), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(39, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(43, 7), new TerminalSize(1, 3), ' ');
-        graphics_.fillRectangle(new TerminalPosition(43, 11), new TerminalSize(1, 3), ' ');
-        // E
-        graphics_.fillRectangle(new TerminalPosition(45, 6), new TerminalSize(6, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(45, 10), new TerminalSize(6, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(45, 14), new TerminalSize(6, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(46, 7), new TerminalSize(1, 7), ' ');
-        // R
-        graphics_.fillRectangle(new TerminalPosition(52, 6), new TerminalSize(6, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(52, 10), new TerminalSize(6, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(53, 7), new TerminalSize(1, 8), ' ');
-        graphics_.fillRectangle(new TerminalPosition(58, 7), new TerminalSize(1, 3), ' ');
-        graphics_.fillRectangle(new TerminalPosition(54, 10), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(55, 11), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(56, 12), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(57, 13), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(58, 14), new TerminalSize(1, 1), ' ');
-        // M
-        graphics_.fillRectangle(new TerminalPosition(60, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(66, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(61, 7), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(65, 7), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(62, 8), new TerminalSize(1, 2), ' ');
-        graphics_.fillRectangle(new TerminalPosition(64, 8), new TerminalSize(1, 2), ' ');
-        graphics_.fillRectangle(new TerminalPosition(63, 10), new TerminalSize(1, 2), ' ');
-        // A
-        graphics_.fillRectangle(new TerminalPosition(68, 10), new TerminalSize(7, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(70, 6), new TerminalSize(3, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(69, 7), new TerminalSize(1, 8), ' ');
-        graphics_.fillRectangle(new TerminalPosition(73, 7), new TerminalSize(1, 8), ' ');
-        // N
-        graphics_.fillRectangle(new TerminalPosition(76, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(79, 7), new TerminalSize(1, 7), ' ');
-        graphics_.fillRectangle(new TerminalPosition(82, 6), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(77, 6), new TerminalSize(2, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(80, 14), new TerminalSize(2, 1), ' ');
-        //DRAWING PLAY
-        // P
-        graphics_.fillRectangle(new TerminalPosition(30, 18), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(30, 23), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(31, 18), new TerminalSize(1, 9), ' ');
-        graphics_.fillRectangle(new TerminalPosition(35, 19), new TerminalSize(1, 4), ' ');
-        //L
-        graphics_.fillRectangle(new TerminalPosition(36, 26), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(37, 18), new TerminalSize(1, 8), ' ');
-        // A
-        graphics_.fillRectangle(new TerminalPosition(41, 23), new TerminalSize(7, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(43, 18), new TerminalSize(3, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(42, 19), new TerminalSize(1, 8), ' ');
-        graphics_.fillRectangle(new TerminalPosition(46, 19), new TerminalSize(1, 8), ' ');
-        // Y
-        graphics_.fillRectangle(new TerminalPosition(49, 19), new TerminalSize(1, 4), ' ');
-        graphics_.fillRectangle(new TerminalPosition(53, 19), new TerminalSize(1, 4), ' ');
-        graphics_.fillRectangle(new TerminalPosition(50, 23), new TerminalSize(3, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(51, 24), new TerminalSize(1, 3), ' ');
-        graphics_.fillRectangle(new TerminalPosition(48, 18), new TerminalSize(1, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(54, 18), new TerminalSize(1, 1), ' ');
-        //DRAWING SETTINGS
-        //S
-        graphics_.fillRectangle(new TerminalPosition(31, 30), new TerminalSize(6, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(30, 31), new TerminalSize(1, 4), ' ');
-        graphics_.fillRectangle(new TerminalPosition(31, 35), new TerminalSize(5, 1), ' ');
-        graphics_.fillRectangle(new TerminalPosition(36, 36), new TerminalSize(1, 4), ' ');
-        graphics_.fillRectangle(new TerminalPosition(30, 40), new TerminalSize(6, 1), ' ');
+        bombermanText.draw(graphics_, new Position(0,0), false);
+        playText.draw(graphics_, new Position(0,0), false);
+
+        drawPlayerInMenu(graphics_, players_[0], 0);
+        drawPlayerInMenu(graphics_, players_[1], 1);
+        drawPlayerInMenu(graphics_, players_[2], 2);
+        drawPlayerInMenu(graphics_, players_[3], 3);
         if (mainMenuBomb < 232) {
             //BOMB SHADOW
             if (mainMenuBomb < 224) {
@@ -403,10 +412,6 @@ public class MenuView {
                 model.setMenuState();
             }
         }
-        drawPlayerInMenu(graphics_, players_[0], 0);
-        drawPlayerInMenu(graphics_, players_[1], 1);
-        drawPlayerInMenu(graphics_, players_[2], 2);
-        drawPlayerInMenu(graphics_, players_[3], 3);
     }
 
     public void drawDebugDeltaTime(TextGraphics graphics_, int deltaTime) {

@@ -13,6 +13,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Bomberman extends BoardElement {
     String name;
     String color;
+    int eliminations = 0;
     int lives = 0;
     int bombLimit = 1;
     int activeBombs = 0;
@@ -240,7 +241,7 @@ public class Bomberman extends BoardElement {
         this.activeBombs = activeBombs;
     }
 
-    public void getHurt() {
+    public void getHurt(Bomb bomb_) {
         if (state == STATE.DEAD)
             return;
         if (!invincibility) {
@@ -257,6 +258,7 @@ public class Bomberman extends BoardElement {
                 if (lives < 1) {
                     state = STATE.DEAD;
                     this.getBoard().getAudioPlayer().playLoseSound();
+                    getBoard().PlayerEliminated(bomb_.getOwner(), this);
                 }
                 else this.getBoard().getAudioPlayer().playHurtSound();
             }
@@ -301,5 +303,13 @@ public class Bomberman extends BoardElement {
         if (state == STATE.DEAD)
             return;
         this.invincibilityTicks = invincibilityTicks_;
+    }
+
+    public int getEliminations() {
+        return eliminations;
+    }
+
+    public void setEliminations(int eliminations_) {
+        this.eliminations = eliminations_;
     }
 }

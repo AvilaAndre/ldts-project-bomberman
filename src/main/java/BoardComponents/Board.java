@@ -13,6 +13,7 @@ import Structures.ColliderBox;
 import Structures.Position;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,6 +28,7 @@ public class Board {
     private ArrayList<Bomb> bombs = new ArrayList<>();
     private ArrayList<PowerUp> powerups = new ArrayList<>();
     private ArrayList<BoardElement> drawQueue = new ArrayList<>();
+    ArrayList<Pair<Bomberman, Bomberman>> eliminationsQueue = new ArrayList<>();
 
     public Board(String code, GameModel model_) {
         model = model_;
@@ -83,8 +85,9 @@ public class Board {
         for (Bomberman player : model.getPlayers()) {
             if (player != null) {
                 player.loop();
-                if (!checkExplodedBombCollision(player.getPosition(), player.getCollider()))
-                    player.getHurt();
+                Bomb bomb = this.getExplodedBombCollision(player.getPosition(), player.getCollider());
+                if (bomb != null)
+                    player.getHurt(bomb);
                 PowerUp power = getPowerUpCollision(player.getPosition(), player.getCollider());
                 if (power != null) {
                     power.affect(player);
@@ -157,13 +160,13 @@ public class Board {
         return null;
     }
 
-    public boolean checkExplodedBombCollision(Position pos, ColliderBox[] collider) {
+    public Bomb getExplodedBombCollision(Position pos, ColliderBox[] collider) {
         for (Bomb elem : bombs)
             for (ColliderBox col1 : collider)
                 for (ColliderBox col2 : elem.getCollider())
                     if (col1.collides(pos, col2, elem.getPosition()) && elem.getExploded())
-                        return false;
-        return true;
+                        return elem;
+        return null;
     }
 
     public PowerUp getPowerUpCollision(Position pos, ColliderBox[] collider) {
@@ -269,5 +272,19 @@ public class Board {
         else power = 5;
         if (power > -1)
             powerups.add(factory.getPowerUp(position_, this, power));
+    }
+
+    public void PlayerEliminated(Bomberman owner_, Bomberman bomberman_) {
+        if (owner_ == bomberman_)
+            owner_.setEliminations(owner_.getEliminations() - 1);
+        else
+            owner_.setEliminations(owner_.getEliminations() + 1);
+        eliminationsQueue.add(new Pair<>(owner_, bomberman_));
+    }
+
+    public ArrayList<Pair<Bomberman, Bomberman>> getEliminationsQueue() {
+        ArrayList<Pair<Bomberman, Bomberman>> ret = (ArrayList<Pair<Bomberman, Bomberman>>) eliminationsQueue.clone();
+        eliminationsQueue.clear();
+        return ret;
     }
 }

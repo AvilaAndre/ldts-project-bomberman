@@ -9,6 +9,7 @@ public class DrawingAnimation extends DrawingMethod{
     private DrawingImage[] frames = null;
     private int[] frameDuration = null;
     private boolean paused = false;
+    private boolean ended = false;
     private final boolean pauseOnEnding;
     private int size = 0;
 
@@ -31,8 +32,10 @@ public class DrawingAnimation extends DrawingMethod{
     }
 
     public void draw(TextGraphics graphics_, Position pos_, boolean boardOffset_) {
-        if (frameDuration[size] == currentFrameTick && frameIndex == size && pauseOnEnding)
+        if (frameDuration[size] == currentFrameTick && frameIndex == size && pauseOnEnding) {
             paused = true;
+            ended = true;
+        }
         if (!paused)
             currentFrameTick++;
         if (currentFrameTick > frameDuration[frameIndex]) {
@@ -61,5 +64,10 @@ public class DrawingAnimation extends DrawingMethod{
         frameIndex = 0;
         currentFrameTick = 0;
         paused = false;
+        ended = false;
+    }
+
+    public boolean getEnded() {
+        return ended;
     }
 }

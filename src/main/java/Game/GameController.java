@@ -3,6 +3,7 @@ package Game;
 import Audio.AudioPlayer;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.io.IOException;
@@ -11,8 +12,8 @@ public class GameController {
     Screen screen;
     GameModel model;
     GameView view;
-
     AudioPlayer audio = AudioPlayer.getInstance();
+    private boolean paused = false;
 
 
     public GameController(Screen screen_, int width_, int height_, String playerOne_, String playerTwo_, String playerThree_, String playerFour_) {
@@ -30,8 +31,21 @@ public class GameController {
     }
 
     private void processInput(KeyStroke key) {
+        if (paused) {
+            if (key == null)
+                return;
+            if (key.getKeyType() == KeyType.Escape) {
+                paused = false;
+                System.out.println("UNPAUSE");
+            }
+            return;
+        }
         if (key == null) return;
         switch (key.getKeyType()) {
+            case Escape:
+                paused = true;
+                System.out.println("PAUSE");
+                break;
             case ArrowUp:
                 model.playerUp(1);
                 break;
@@ -119,7 +133,8 @@ public class GameController {
     }
 
     public void draw(TextGraphics graphics) {
-        model.gameBoard.loop();
-        view.draw(graphics, model.gameBoard.getDrawQueue(), model.playerOne, model.playerTwo, model.playerThree, model.playerFour);
+        if (!paused)
+            model.gameBoard.loop();
+        view.draw(graphics, model.gameBoard.getDrawQueue(), model.playerOne, model.playerTwo, model.playerThree, model.playerFour, model.getGameBoard().getEliminationsQueue(), this.paused);
     }
 }
