@@ -11,7 +11,7 @@ public class MenuModel {
     private int height;
     private Screen screen;
 
-    public enum STATE {MAIN_MENU, GAME}
+    public enum STATE {MAIN_MENU, GAME, END}
     private STATE state = STATE.MAIN_MENU;
     AudioPlayer MenuPlayer = new AudioPlayer();
 
@@ -41,6 +41,9 @@ public class MenuModel {
     public STATE getState() {
         return this.state;
     }
+
+    public void setState(STATE state_){this.state = state_;}
+
 
     public int getMenuOption() {
         return mainMenuOpt;
