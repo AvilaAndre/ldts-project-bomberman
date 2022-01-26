@@ -481,7 +481,7 @@ public class MenuView {
                 graphics_.setBackgroundColor(TextColor.Factory.fromString(fireYellowColor));
                 graphics_.fillRectangle(new TerminalPosition(23, option_ * optionSize + bombRow - 2), new TerminalSize(1, 1), ' ');
                 graphics_.fillRectangle(new TerminalPosition(25, option_ * optionSize + bombRow - 2), new TerminalSize(1, 1), ' ');
-            }else if (mainMenuBomb < 230) {
+            } else if (mainMenuBomb < 230) {
             } else if (mainMenuBomb < 234) {
                 graphics_.setBackgroundColor(TextColor.Factory.fromString(bombColor));
                 graphics_.fillRectangle(new TerminalPosition(22, option_ * optionSize + bombRow - 1), new TerminalSize(4, 1), ' ');
@@ -505,7 +505,10 @@ public class MenuView {
                         break;
                     }
                     case 2: {
-                        break;
+                        graphics_.setBackgroundColor(TextColor.Factory.fromString("#000000"));
+                        graphics_.fillRectangle(new TerminalPosition(31, 30- option_ + 2), new TerminalSize( 2, 1), ' ');
+                        graphics_.fillRectangle(new TerminalPosition(30, 31- option_ + 2), new TerminalSize( 1, 7), ' ');
+                        graphics_.fillRectangle(new TerminalPosition(31, 38- option_ + 2), new TerminalSize( 3, 1), ' ');
                     }
                     default:
                         break;
