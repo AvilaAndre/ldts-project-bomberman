@@ -12,7 +12,6 @@ import Audio.AudioPlayer;
 import Structures.ColliderBox;
 import Structures.Position;
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ public class Board {
     GameModel model;
     TextColor backColor = TextColor.Factory.fromString("#999999");
     Random r = new Random();
-    private final TextGraphics graphics = null;
     private ArrayList<BoardElement> blocks = new ArrayList<>();
     private ArrayList<Bomb> bombs = new ArrayList<>();
     private ArrayList<PowerUp> powerups = new ArrayList<>();
@@ -32,7 +30,6 @@ public class Board {
 
     public Board(String code, GameModel model_) {
         model = model_;
-        int u = 0;
         DrawingImage dImage;
         for (int i = 0; i < 16; i++)
             for (int j = 0; j < 18; j++) {
@@ -52,7 +49,6 @@ public class Board {
                         blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{
                                 new ColliderBox(new Position(0, 0), 1, 1)
                         }, false));
-                        u++;
                         break;
                     case '1':
                         dImage = new DrawingImage(new DrawingBlock[]{
@@ -69,7 +65,6 @@ public class Board {
                         blocks.add(new Block(new Position(j, i), this, dImage, new ColliderBox[]{
                                 new ColliderBox(new Position(0, 0), 1, 1)
                         }, true));
-                        u++;
                         break;
                 }
             }

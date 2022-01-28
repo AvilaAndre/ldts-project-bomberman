@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PowerUpTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-01-28T16:18:16" hostname="LAPTOP-GK5K2GLK" time="0.058">
+  <properties/>
+  <testcase name="shieldEffect()" classname="PowerUpTest" time="0.004"/>
+  <testcase name="createPowerUpEffect()" classname="PowerUpTest" time="0.003"/>
+  <testcase name="blastSizeEffect()" classname="PowerUpTest" time="0.003"/>
+  <testcase name="pushTheBombEffect()" classname="PowerUpTest" time="0.009"/>
+  <testcase name="InvincibilityEffect()" classname="PowerUpTest" time="0.011"/>
+  <testcase name="extraLifeEffect()" classname="PowerUpTest" time="0.003"/>
+  <testcase name="createPowerUp()" classname="PowerUpTest" time="0.008"/>
+  <testcase name="extraBombEffect()" classname="PowerUpTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

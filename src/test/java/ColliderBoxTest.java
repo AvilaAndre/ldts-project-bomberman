@@ -2,13 +2,12 @@ import Structures.ColliderBox;
 import Structures.Position;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ColliderBoxTest {
     @Test
-    public void CollisionTest() throws IOException {
+    public void CollisionTest() {
         // These represent the Positions of the parents of both colliders, instead of having a parent variable inside the ColliderBox class
         //the parent's position is passed as an argument so scenarios (example: the parent being one x position ahead) can be used.
         Position parentPosition = new Position(0,0);

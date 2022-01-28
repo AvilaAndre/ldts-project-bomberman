@@ -267,6 +267,6 @@ public class PowerUpTest {
         assertEquals("BlastSize", testModel.getGameBoard().getPowerUps().get(1).toString());
         assertEquals("Invincibility", testModel.getGameBoard().getPowerUps().get(2).toString());
         assertEquals("BlastSize", testModel.getGameBoard().getPowerUps().get(3).toString());
-        assertEquals("ExtraLife", testModel.getGameBoard().getPowerUps().get(4).toString());
+        assertEquals("Shield", testModel.getGameBoard().getPowerUps().get(4).toString());
     }
 }

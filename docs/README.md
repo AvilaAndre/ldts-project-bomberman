@@ -89,6 +89,95 @@ At runtime the power-ups need a Position and a Board, those variables are passed
 The use of this pattern in the current design allow the following benefits:
 - Reusable construction code when creating multiple power-ups of different types.
 - Open/Closed Principle. Its easier to introduce new power-ups without breaking the current code.
+
+
+## CODE SMELLS AND POSSIBLE REFACTORINGS
+
+### Bloaters
+
+A code smell commonly present in our program is the Long Method bloater, one of the major causes of it are the UI, for example:
+
+**Long Method** - In order to make the menu UI interactive and animated a big chunk of code was hard-coded at first, then simplified using the Drawing Methods, however, this simplification wasn't enough as the code is still extensive and difficult to read. The screenshot below shows a part of the main menu's bomb which animates differently after an option is selected making it necessary to create this overcomplicated code instead.
+
+<p align="center" justify="center">
+  <img src="images/screenshots/longMethodBloater.png"/>
+</p>
+<p align="center">
+</p>
+
+
+A refactoring solution to this problem would be the *Extract Method*. This refactoring was used in the same class to draw the bomb when an options hasn't been selected as shown below:
+
+<p align="center" justify="center">
+  <img src="images/screenshots/longMethodBloaterRefactoring.png"/>
+</p>
+<p align="center">
+</p>
+
+
+### Dispensables
+
+Another code smell that appears mainly on the view is the Duplicate Code.
+
+**Duplicate Code** - This code smells appears more than once and usually the code is not totally identical, one instance where this happens is the draw of the shadows on the main menu because its y position changes depending on the position of the bomb on the menu, otherwise being the exact same as what they are shadows of colored color. The screenshot below shows the code mentioned.
+
+<p align="center" justify="center">
+  <img src="images/screenshots/duplicateCodeDispensable.png"/>
+</p>
+<p align="center">
+</p>
+
+A refactoring solution for this problem would be the *Form Template Method* which would draw the objects (in this case the letters and the bomb) and then their shadows using a  variable to signilize if it is a shadow (coloring it black) and a variable to give its y position. This method was similarly used in the Game package where the move functions would be the same for the four players, using an int to check which player moves, as shown below.
+
+<p align="center" justify="center">
+  <img src="images/screenshots/duplicateCodeDispensableRefactoring.png"/>
+</p>
+<p align="center">
+</p>
+
+**Speculative Generality** - This code smells appears on the Board class's constructor, the game board was planned to be selectable by the player, therefore its constructor was made to read a string that would then be used to create the Blocks 
+
+<p align="center" justify="center">
+  <img src="images/screenshots/speculativeGeneralityDispensables.png"/>
+</p>
+<p align="center">
+</p>
+
+### Change Preventers
+
+This code smell appears in this list primarily in the Board Class.
+
+**Divergent Changes** - This code smell appears in the Board class as this class manages everything board related. Due to the game obviously taking place in the board, the last one not only manages the board but has to manage some game logic as shown below in the method loop.
+
+<p align="center" justify="center">
+  <img src="images/screenshots/changePreventersDivergentChange.png"/>
+</p>
+<p align="center">
+</p>
+
+A refactoring solution for this problem would be the *Extract Class* which would divide the management of game logic and the management of the board elements into different classes, making the code more organized and easier to read.
+
+
+## TESTS
+
+
+<p align="center" justify="center">
+  <img src="images/screenshots/Tests.png"/>
+</p>
+<p align="center">
+  <b><i>Fig 3. Tests</i></b>
+</p>
+
+</br>
+
+<p align="center" justify="center">
+  <img src="images/screenshots/codeCoverage.png"/>
+</p>
+<p align="center">
+  <b><i>Fig 4. Code Coverage</i></b>
+</p>
+
+
 ### SELF-EVALUATION
 
 - Afonso Abreu 33.3%

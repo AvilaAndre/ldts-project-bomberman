@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="DrawingMethodsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-01-28T16:18:13" hostname="LAPTOP-GK5K2GLK" time="0.794">
+  <properties/>
+  <testcase name="AnimationTest()" classname="DrawingMethodsTest" time="0.492"/>
+  <testcase name="BlockTest()" classname="DrawingMethodsTest" time="0.175"/>
+  <testcase name="TextTest()" classname="DrawingMethodsTest" time="0.124"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
